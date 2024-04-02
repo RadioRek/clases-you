@@ -1,0 +1,392 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="/path/to/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="{% static '/css/home.css' %}" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="mainContainer" id="mainContainer">
+  <div class="leftContainer">
+    <div class="tittlecontainer">
+      <img src="{% static '/img/cat.png' %}" alt="" class="customLogo" />
+      <h3 class="heading-4 text-center">Que quieres estudiar hoy?</h3>
+    </div>
+    <div class="menuContainer">
+      <ul>
+        {% verbatim %}
+        <a href="#" v-for="link in links" v-on:click="selectedItem = link">
+          <li class="py-2 sideItem parrafo" v-bind:class="{ 'selected': selectedItem === link }">{{ link }}</li>
+        </a>
+        {% endverbatim %}
+      </ul>
+    </div>
+    <img src="{% static '/img/laying.png' %}" alt="" class="layingImg" />
+    <div class="profileContainer">
+      <img src="{% static '/img/girl3.png' %}" class="avatar" />
+      {% if user.nombre == None %}
+      <a href="#" v-on:click.prevent="selectedItem = 'Perfil'" class="nameLink">
+        <span class="profileName parrafo">{{ user.nombre }} {{ user.apellido }}</span>
+      </a>
+      {% else %}
+      <a href="#" v-on:click.prevent="selectedItem = 'Perfil'" class="nameLink">
+        <span class="profileName parrafo">{{ user.email }}</span>
+        {% endif %}
+      </a>
+    </div>
+  </div>
+
+  <div class="rightContainer">
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Inicio'">
+        <div id="carouselHome" class="carousel slide customCarousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="0" class="active"
+              aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{% static '/img/custom.png' %}" class="d-block carouselImg" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="tituloCarousel">Personaliza tu perfil</h5>
+                <p class="subTituloCarousel">Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de
+                  tus metodos de enseñanza</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/custom.png' %}" class="d-block carouselImg" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="tituloCarousel">Second slide label</h5>
+                <p class="subTituloCarousel">Some representative placeholder content for the second slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="{% static '/img/custom.png' %}" class="d-block carouselImg" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="tituloCarousel">Third slide label</h5>
+                <p class="subTituloCarousel">Some representative placeholder content for the third slide.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev"><span
+              class="carousel-control-prev-icon" aria-hidden="true"></span></button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next"><span
+              class="carousel-control-next-icon" aria-hidden="true"></span></button>
+        </div>
+
+        <div class="card recordatorioCustom">
+          <h5 class="card-header heading-5">Recordatorios</h5>
+          <div class="card-body">
+            <h5 class="card-title heading-5" style="font-weight: normal;">Special title treatment</h5>
+            <p class="card-text parrafo">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn botonCustom heading-6">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Calendario'">
+        <div class="card ">
+          <h5 class="card-header heading-5">Calendario</h5>
+          <div class="card-body">
+            <h5 class="card-title heading-5" style="font-weight: normal;">Special title treatment</h5>
+            <p class="card-text parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est recusandae
+              molestiae aut, maiores repellat ut tempora dolorum temporibus nihil sit itaque iusto dolore porro
+              doloremque, beatae cumque, voluptates autem?</p>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Chat'">
+        <div class="card ">
+          <h5 class="card-header heading-5">Chat</h5>
+          <div class="card-body">
+            <h5 class="card-title heading-5" style="font-weight: normal;">Special title treatment</h5>
+            <p class="card-text parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est recusandae
+              molestiae aut, maiores repellat ut tempora dolorum temporibus nihil sit itaque iusto dolore porro
+              doloremque, beatae cumque, voluptates autem?</p>
+            <a href="{% url 'logout' %}">logout</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Ingresa a tu clase'">
+        <div class="card ">
+          <h5 class="card-header heading-5">Clases</h5>
+          <div class="card-body">
+            <h5 class="card-title heading-5" style="font-weight: normal;">Special title treatment</h5>
+            <p class="card-text parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est recusandae
+              molestiae aut, maiores repellat ut tempora dolorum temporibus nihil sit itaque iusto dolore porro
+              doloremque, beatae cumque, voluptates autem?</p>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    {% if user.tipoUsuario.id == 2 %}
+    <transition name="slide">
+      <div v-if="selectedItem === 'Buscar clases'">
+        <div class="card clasesCard">
+          <div class="card-body">
+            <h5 class="card-title heading-4 text-center">Busca a tu profesor ideal</h5>
+            <form action="" style="width: 50%;" class="mx-auto mb-5">
+              <input type="search" class="form-control" placeholder="Buscas algo en especial?...">
+            </form>
+            <h5 class="card-title heading-4 text-center mb-5">Anuncios activos</h5>
+            <div class="row">
+              {% for anuncio in anuncios %}
+              <div class="col-4">
+                <a href="#">
+                  <div class="card anunciosCards">
+                    <div class="card-body">
+                      <h4 class="heading-4 text-center">{{ anuncio.titulo }}</h4>
+                      <h5 class="heading-5 text-center"> {{ anuncio.subTitulo }}</h5>
+                      <p class="parrafo text-center">{{ anuncio.descripcion }}</p>
+                      <p class="parrafo text-center">$ {{ anuncio.precio }}</p>
+                      <p class="parrafo text-center">{{ anuncio.campo.nombre }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+    {% endif %}
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Compra creditos!'">
+        <div class="card ">
+          <h5 class="card-header heading-5">Creditos</h5>
+          <div class="card-body">
+            <h5 class="card-title heading-5" style="font-weight: normal;">Special title treatment</h5>
+            <p class="card-text parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est recusandae
+              molestiae aut, maiores repellat ut tempora dolorum temporibus nihil sit itaque iusto dolore porro
+              doloremque, beatae cumque, voluptates autem?</p>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="slide">
+      <div v-if="selectedItem === 'Perfil'">
+        <div class="card profileCard">
+          <div class="card-body  m-0 p-0">
+            <img src="{% static '/img/bannerPink.png' %}" alt="" class="banner-img">
+            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="avatar-img">
+
+            <div class="row mx-4 customRow">
+
+              <div class="col-6 ">
+                <div class="customInput mb-4">
+                  <label for="inputNombre" class="form-label parrafo">Nombre</label>
+
+                  <input type="text" class="form-control parrafo" id="inputNombre" placeholder="{{ user.nombre }}" />
+                </div>
+              </div>
+
+              <div class="col-6 ">
+                <div class="customInput mb-4">
+                  <label for="inputApellido" class="form-label parrafo">Apellido</label>
+
+                  <input type="text" class="form-control parrafo" id="inputApellido"
+                    placeholder="{{ user.apellido }}" />
+                </div>
+              </div>
+
+              <div class="col-6 ">
+                <div class="customInput mb-4">
+                  <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
+
+                  <input type="email" class="form-control parrafo" id="inputEmail" placeholder="{{ user.email }}" />
+                </div>
+              </div>
+
+              <div class="col-6 ">
+                <div class="customInput mb-4">
+                  <label for="inputUsername" class="form-label parrafo">Nombre de usuario</label>
+
+                  <input type="text" class="form-control parrafo" id="inputUsername"
+                    placeholder="{{ user.username }}" />
+                </div>
+              </div>
+
+              <div class="col-6 customCol">
+                <div class="customInput mb-4">
+                  <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
+
+                  <input type="file" class="form-control parrafo" id="inputAvatar" />
+                </div>
+              </div>
+
+
+              <div class="col-6 customCol">
+                <div class="customInput mb-4">
+                  <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
+
+                  <input type="tel" class="form-control parrafo" id="inputTelefono" placeholder="{{ user.telefono }}" />
+                </div>
+              </div>
+
+              <div class="col-6 mt-4">
+                <div class="customInput">
+                  <label for="inputPass" class="form-label parrafo">Ingresa tu contraseña para confirmar los
+                    cambios</label>
+
+                  <input type="password" class="form-control parrafo" id="inputPass"
+                    placeholder="Ingresa tu contraseña" />
+                </div>
+              </div>
+
+              <div class="col-6 d-flex justify-content-center">
+                <div class="mt-auto">
+                  <button type="button" class="btn botonCustom heading-6">Confirmar cambios</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    {% if user.tipoUsuario.id == 1 %}
+    <transition name="slide">
+      <div v-if="selectedItem === 'Mi anuncio'">
+        <div class="card anuncioCard">
+          <div class="card-body">
+            {% if user.anuncio == None %}
+            <h1 class="heading-5 text-center mb-5">Empieza a crear tu anuncio para que los alumnos te encuentren!</h1>
+            <form method="POST" action="{% url 'home' %}" id="anuncioForm">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputTitulo" class="form-label parrafo">Titulo</label>
+                    <input type="text" class="form-control parrafo" id="inputTitulo" placeholder="Ingresa un titulo"
+                      name="inputTitulo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputSubTitulo" class="form-label parrafo">Sub-titulo</label>
+                    <input type="text" class="form-control parrafo" id="inputSubTitulo"
+                      placeholder="Ingresa un sub-titulo" name="inputSubTitulo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputCampo" class="form-label parrafo">Campo</label>
+                    <input type="text" class="form-control parrafo" id="inputCampo"
+                      placeholder="Ingresa la materia que enseñas" name="inputCampo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputPrecio" class="form-label parrafo">Precio</label>
+                    <input type="text" class="form-control parrafo" id="inputPrecio"
+                      placeholder="Ingresa un precio para tus clases" name="inputPrecio" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="customInput mb-4">
+                    <label for="inputPrecio" class="form-label parrafo text-center"
+                      style="width: 100%;">Descripcion</label>
+                    <textarea class="customTextArea" name="inputDescripcion" id="inputDescripcion" rows="10"
+                      placeholder="Ingresa una descripcion para tu anuncio"></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="customInput mb-4 text-center">
+                    <button type="submit" name="anuncioForm" value="anuncioForm" class="btn botonCustom heading-6">Crear
+                      Anuncio</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            {% else %}
+            <h1 class="heading-5 text-center mb-5">Modifica tu anuncio</h1>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputTitulo" class="form-label parrafo">Titulo</label>
+                    <input type="text" class="form-control parrafo" id="inputTitulo"
+                      placeholder="{{ user.anuncio.titulo }}" name="inputTitulo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputSubTitulo" class="form-label parrafo">Sub-titulo</label>
+                    <input type="text" class="form-control parrafo" id="inputSubTitulo"
+                      placeholder="{{ user.anuncio.subTitulo }}" name="inputSubTitulo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputCampo" class="form-label parrafo">Campo</label>
+                    <input type="text" class="form-control parrafo" id="inputCampo"
+                      placeholder="{{ user.anuncio.campo.nombre }}" name="inputCampo" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="customInput mb-4">
+                    <label for="inputPrecio" class="form-label parrafo">Precio</label>
+                    <input type="text" class="form-control parrafo" id="inputPrecio"
+                      placeholder="{{ user.anuncio.precio }}" name="inputPrecio" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="customInput mb-4">
+                    <label for="inputPrecio" class="form-label parrafo text-center"
+                      style="width: 100%;">Descripcion</label>
+                    <textarea class="customTextArea" name="inputDescripcion" id="inputDescripcion" rows="10"
+                      placeholder="{{ user.anuncio.descripcion }}"></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="customInput mb-4 text-center">
+                    <button type="submit" name="anuncioForm" value="anuncioUpdateForm"
+                      class="btn botonCustom heading-6">Confirmar cambios</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </transition>
+    {% endif %}
+  </div>
+</div>
+
+
+<script>
+  var app = new Vue({
+    el: '#mainContainer',
+    data: {
+      {% if user.tipoUsuario.id == 2 %}
+  links: ['Inicio', 'Calendario', 'Chat', 'Ingresa a tu clase', 'Buscar clases', 'Compra creditos!'],
+    {% else %}
+  links: ['Inicio', 'Calendario', 'Chat', 'Ingresa a tu clase', 'Mi anuncio', 'Compra creditos!'],
+    {% endif %}
+  selectedItem: 'Inicio'
+    }
+  })
+
+</script>
+{% endblock %}

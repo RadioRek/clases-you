@@ -1,0 +1,179 @@
+body {
+    background-image: url('/static/img/loginBackground.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.customImg1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 30rem;
+    height: auto;
+}
+
+.customImg2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20rem;
+    height: auto;
+}
+
+.customImg3 {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 20rem;
+    height: auto;
+}
+
+
+.customCard {
+    margin: 0 auto;
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.customInput {
+    margin-bottom: 2rem;
+}
+
+.btn.botonCustomAyuda {
+    border: solid 1.5px #201F22 !important;
+}
+
+.btn.botonCustomAyuda:hover {
+    border: solid 1.5px #201F22 !important;
+    color: whitesmoke !important;
+    background-color: #201F22 !important;
+}
+
+.politicasCustom {
+    margin-bottom: 2rem;
+}
+
+.botonCustomLogin {
+    background-color: #fbdf54;
+    border-color: #fbdf54;
+    font-weight: normal;
+    color: #585759;
+}
+
+.botonCustomLogin:hover {
+    background-color: #FACA52;
+    border-color: #FACA52;
+    color: #585759;
+}
+
+.contenedorTop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 4rem;
+    padding-right: 2rem;
+    margin-top: 1rem;
+}
+
+.botonTop {
+    background-color: #201F22;
+    border-color: #201F22;
+    color: whitesmoke;
+    margin-left: 1rem;
+}
+
+.botonTop:hover {
+    background-color: #908f91;
+    border-color: #908f91;
+    color: whitesmoke;
+    margin-left: 1rem;
+}
+
+.termContainer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-bottom: 2rem;
+    transform: translateX(-50%);
+}
+
+.form-control:focus {
+    border-color: #FAF252;
+    box-shadow: 0 0 0 0.2rem #FADE52;
+}
+
+@media (max-width: 768px) {
+    .customImg1 {
+        display: none;
+    }
+
+    .customImg2 {
+        display: none;
+    }
+
+    .customImg3 {
+        display: none;
+    }
+}
+
+@media (max-height: 600px) {
+    .customImg2 {
+        display: none;
+    }
+
+    .customCard {
+        z-index: 2;
+    }
+}
+
+@media (max-width: 375px) {
+    .customCard {
+        margin: 0 auto;
+        width: 94%;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+}
+
+@media (max-height: 375px) {
+    .customCard {
+        margin: 0 auto;
+        width: 95%;
+        height: 95%;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+
+    .customSubtitle {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .customInput {
+        margin-bottom: 0.5rem;
+    }
+
+    .politicasCustom {
+        margin-bottom: 0.5rem;
+    }
+
+    .vinculoRegistro {
+        color: #201F22;
+        font-weight: bold;
+        margin-right: 1rem;
+        z-index: 2;
+    }
+
+    .botonTop {
+        display: none;
+    }
+}
