@@ -1,7 +1,6 @@
 .mainContainer {
     display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
 .leftContainer {
@@ -10,14 +9,6 @@
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    height: 100vh;
-}
-
-.rightContainer {
-    width: 75%;
-    background-image: url('/static/img/linesBg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
 }
 
@@ -140,6 +131,18 @@ ul {
     margin: 0 auto !important;
 }
 
+/* Estilos contenedor derecho y paneles del menu */
+.rightContainer {
+    width: 75%;
+    background-image: url('/static/img/linesBg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
 .selected {
     background-color: #d6d6d6 !important;
 }
@@ -147,26 +150,145 @@ ul {
 .slide-enter-active,
 .slide-leave-active {
     transition: all 0.5s ease;
+    position: absolute;
+    z-index: 1;
+    width: 75vw;
+    height: 100vh;
+    overflow-x: hidden;
 }
 
 .slide-enter,
 .slide-leave-to {
     transform: translateX(100%);
+    position: absolute;
+    z-index: 0;
+    width: 75vw;
+    height: 100vh;
+}
+
+.menuSlide {
+    width: 75vw;
+    height: 100vh;
+    padding: 4rem;
+}
+
+/* Estilos videollamada card */
+.videoCard {
+    height: -webkit-fill-available;
+    padding: 4rem;
+}
+
+.conClase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonClase {
+    background: linear-gradient(to right, #FADE52, #FACA52);
+    border-color: #FADE52;
+    color: #201F22;
+    height: 10rem;
+    width: 20rem;
+    border-radius: 4rem;
+}
+
+.botonEntrar {
+    background: linear-gradient(to right, #FADE52, #FACA52);
+    border-color: #FADE52;
+    color: #201F22;
+    height: 8rem;
+    width: 16rem;
+    border-radius: 4rem;
+}
+.customEntrar {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+}
+
+/* Estilos del chat */
+.chatCard {
+    height: -webkit-fill-available;
+    padding: 4rem;
+}
+
+.listaUsuarios {
+    width: 20%;
+}
+
+.botonEnviar {
+    width: 20%;
+    background-color: #fbdf54;
+    border-color: #fbdf54;
+    font-weight: normal;
+    color: #585759;
+}
+
+.chatContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.listaChatBox {
+    display: flex;
+    height: 90%;
+}
+
+.chatBox {
+    display: none;
+    width: 100%;
+    border: #D6D6D6 solid 1px;
+    border-radius: 1rem;
+    flex-direction: column;
+    padding: 2rem;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+
+.chatControls {
+    display: flex;
+}
+
+.message {
+    border-radius: 0.8rem;
+    line-height: 1.25;
+    max-width: 75%;
+    padding: 0.5rem .875rem;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.leMyself {
+    align-items: flex-start;
+    background-color: #d6d6d6;
+    width: fit-content;
+
+}
+
+.leOthers {
+    align-self: flex-end;
+    background-color: #5281FA;
+    color: whitesmoke !important;
+    width: fit-content;
 }
 
 /* Estilos perfil */
 .profileCard {
-    position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    border-radius: 1.5rem;
+    height: -webkit-fill-available;
+}
+
+.profileName:hover {
+    color: #fbdf54 !important;
 }
 
 .avatar-img {
     position: absolute;
-    top: 3%;
+    top: 2%;
     left: 15%;
     z-index: 2;
     width: 7rem;
@@ -174,7 +296,7 @@ ul {
 
 .banner-img {
     position: block;
-    top: 10;
+    top: 2%;
     width: 60%;
     height: 5rem;
     margin-left: 20%;
@@ -207,13 +329,13 @@ ul {
     box-shadow: 0 0 0 0.2rem #FADE52;
 }
 
-.customCol{
+.customCol {
     border-bottom: 1px solid #d6d6d6;
 }
-/* Estilos perfil */
 
 .customTextArea {
-    width: 100%; box-sizing: border-box; 
+    width: 100%;
+    box-sizing: border-box;
     resize: none;
     border: 1px solid #d6d6d6;
     border-radius: 1rem;
@@ -228,35 +350,137 @@ textarea:focus {
     box-shadow: 0 0 0 0.2rem #FADE52;
 }
 
+/* Estilos menu anuncios */
 .anuncioCard {
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    border-radius: 1.5rem;
+    height: -webkit-fill-available;
+    padding: 4rem;
+    
 }
 
+/* Estilos menu buscador de anuncios FALTA MODIFICAR CON LO DE JENNY*/
 .clasesCard {
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 4%;
-    margin-bottom: 4%;
-    border-radius: 1.5rem;
-    padding: 1rem;
+    height: -webkit-fill-available;
+    overflow-y: auto;
+    padding: 4rem;
 }
 
 .anunciosCards {
-    border-radius: 1.5rem;
+    border-radius: 3rem;
     transition: all 0.1s ease-in-out;
+    background-color: #EFE8A9;
 }
 
 .anunciosCards:hover {
-    box-shadow: 0 0 5px rgba(33,33,33,.2); 
+    box-shadow: 0 0 5px rgba(33, 33, 33, .2);
     transform: scale(1.001);
     transition: all 0.1s ease-in-out;
 }
 
-.profileName:hover {
-    color: #FACA52 !important;
+/* Estilos menu calendario */
+.calendarioCard {
+    height: -webkit-fill-available;
+    padding: 2rem;
+}
+
+.calendarioTabla {
+    margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td {
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+}
+
+.diaValido {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #fbdf54 !important;
+    color: #201F22 !important;
+}
+
+.diaValido:hover {
+    background-color: #5281FA !important;
+    color: whitesmoke !important;
+    cursor: pointer;
+}
+
+/* estilos miscelaneos */
+.card {
+    border-radius: 1rem;
+}
+
+.modalCustom {
+    display: none;
+    position: fixed;
+    width: 100%;    
+    height: 100%;
+}
+
+.modalCustom {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FAF2DD;
+    padding: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;    
+    height: 80%;
+}
+
+.botonCustomCerrar {
+    background-color: #FA5E52;
+    border-color: #FA5E52;
+    font-weight: normal;
+    color: #585759;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.botonCustomCerrar:hover {
+    background-color: #BA716C;
+    border-color: #BA716C;
+    color: whitesmoke;
+}
+
+.solicitudCard {
+    height: -webkit-fill-available;
+    overflow-y: auto;
+    padding: 4rem;
+}
+
+.reservaCardAprobada {
+    border-radius: 3rem;
+    transition: all 0.1s ease-in-out;
+    background-color: #5281FA;
+}
+
+.reservaCardAprobada:hover {
+    box-shadow: 0 0 5px rgba(33, 33, 33, .2);
+    transform: scale(1.05);
+    transition: all 0.1s ease-in-out;
+}
+
+.reservaCard {
+    padding: 2rem;
+}
+
+.reservaCardPendiente {
+    border-radius: 3rem;
+    transition: all 0.1s ease-in-out;
+    background-color: #fbdf54;
+}
+
+.reservaCardPendiente:hover {
+    box-shadow: 0 0 5px rgba(33, 33, 33, .2);
+    transform: scale(1.05);
+    transition: all 0.1s ease-in-out;
 }
 
