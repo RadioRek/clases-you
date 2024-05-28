@@ -1,43 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block head %}
   <title>Login</title>
   <link rel="stylesheet" href="{% static '/css/login.css' %}" />
 {% endblock %}
-
 {% block body %}
+  <p class="parrafo" id="tiempo">Obteniendo clima actual...</p>
+
+  <div id="contenedor"> 
   <img src="{% static '/img/coffee.png' %}" alt="" class="customImg1" />
   <img src="{% static '/img/girl1.png' %}" alt="" class="customImg2" />
   <img src="{% static '/img/boy1.png' %}" alt="" class="customImg3" />
-
   <div class="card customCard">
+    <!--Temperatura actual-->
     <h5 class="card-title heading-4 text-center">Bienvenido!</h5>
-
     <h6 class="card-subtitle text-center parrafo">Ingresa tus datos para iniciar sesion</h6>
-
     <div class="card-body">
-      <form method="POST" action="{% url 'login' %}">
+      <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="customInput">
           <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
-
-          <input type="email" class="form-control parrafo" id="inputEmail" placeholder="Alumno@duocuc.cl" name="inputEmail"/>
+          <input type="email"
+                 class="form-control parrafo"
+                 id="inputEmail"
+                 placeholder="Alumno@duocuc.cl"
+                 name="inputEmail" />
         </div>
-
         <div class="customInput">
           <label for="inputPassword" class="form-label parrafo">Contraseña</label>
-
-          <input type="password" class="form-control parrafo" id="inputPassword" placeholder="Ingresa tu contraseña" name="inputPassword"/>
+          <input type="password"
+                 class="form-control parrafo"
+                 id="inputPassword"
+                 placeholder="Ingresa tu contraseña"
+                 name="inputPassword" />
         </div>
-
         <div class="politicasCustom">
           <p class="parrafo">
             Tu informacion sera salvaguardada seguramente segun nuestras
             <a href="" class="parrafo">Politicas de privacidad</a>
           </p>
         </div>
-
         <div class="row">
           <div class="col-4 d-grid">
             <button type="button" class="btn botonCustomAyuda heading-6">Ayuda?</button>
@@ -49,13 +51,13 @@
       </form>
     </div>
   </div>
-
   <div class="contenedorTop">
     <a href="{% url 'registro' %}" class="parrafo botonRegistro">Registrarse</a>
     <button type="button" class="btn btn-lg botonTop">Nosotros</button>
   </div>
-
   <div class="termContainer">
     <a href="" class="parrafo">Terminos de servicio</a>
   </div>
+</div>
+  <script src="{% static '/js/login.js' %}"></script>
 {% endblock %}

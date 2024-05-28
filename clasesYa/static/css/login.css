@@ -1,12 +1,26 @@
 body {
+    position: relative; 
     background-image: url('/static/img/loginBackground.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    height: 100vh;
+}
+
+#contenedor {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
 }
+
+#tiempo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
 
 .customImg1 {
     position: absolute;
