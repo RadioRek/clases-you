@@ -13,4 +13,6 @@ urlpatterns = [
     path("test/", views.test),
     path('get_messages/<int:room_id>/', views.get_messages, name='get_messages'),
     path('videollamada/', views.videollamada, name='videollamada'),
+    # Testing
+    path('anuncios/', views.anuncio_list, name='anuncio_list'),
 ]

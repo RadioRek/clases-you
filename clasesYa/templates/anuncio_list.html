@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Anuncios</title>
+</head>
+<body>
+    <h1>Lista de Anuncios</h1>
+    <ul>
+        {% for anuncio in anuncios %}
+            <li>{{ anuncio.titulo }}: {{ anuncio.descripcion }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

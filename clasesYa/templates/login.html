@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 {% block head %}
   <title>Login</title>
   <link rel="stylesheet" href="{% static '/css/login.css' %}" />
-{% endblock %}
+{% endblock head %}
 {% block body %}
   <p class="parrafo" id="tiempo">Obteniendo clima actual...</p>
 
@@ -60,4 +60,4 @@
   </div>
 </div>
   <script src="{% static '/js/login.js' %}"></script>
-{% endblock %}
+{% endblock body %}

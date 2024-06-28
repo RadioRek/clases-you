@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, authenticate, login
 from .models import Anuncio, Campo, TipoUsuario, Reserva, ChatRoom, ChatMessage
 from django.http import JsonResponse
@@ -8,6 +8,7 @@ import calendar
 from datetime import datetime
 import locale
 from django.utils import timezone
+
 
 User = get_user_model()
 
@@ -229,3 +230,14 @@ def get_messages(request, room_id):
         message_dict = {'id': msg.id, 'idChatRoom': msg.idChatRoom.id, 'idUser': msg.idUser.email, 'message': msg.message, 'timestamp': formatted_time}
         messages_list.append(message_dict)
     return JsonResponse(messages_list, safe=False)
+
+
+# Testing
+def superuser_required(view_func):
+    decorated_view_func = user_passes_test(lambda u: u.is_superuser)(view_func)
+    return decorated_view_func
+
+@superuser_required
+def anuncio_list(request):
+    anuncios = Anuncio.objects.all()
+    return render(request, 'anuncio_list.html', {'anuncios': anuncios})
