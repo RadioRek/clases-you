@@ -8,6 +8,8 @@ import calendar
 from datetime import datetime
 import locale
 from django.utils import timezone
+from django.contrib import messages
+
 
 
 User = get_user_model()
@@ -149,11 +151,14 @@ def home(request):
             'chatRooms': chatRooms,
             'reservas': reservas,
         })
+
 def registro(request):
     if request.method == 'POST':
         if registrarUsuario(request):
+            messages.success(request, 'Registro exitoso! ahora puedes iniciar sesion')
             return redirect('login')
         else:
+            messages.error(request, 'Error al registrar usuario')
             return redirect('registro')
     else:
         return render(request, "registro.html")

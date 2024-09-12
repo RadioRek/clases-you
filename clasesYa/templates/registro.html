@@ -74,6 +74,13 @@
         {% comment %}BOTON REGISTRARSE Y YA TIENES UNA CUENTA{% endcomment %}
         <div>
           <button type="submit" class="btn btn-lg botonCustom heading-6" disabled>Registrarse</button>
+          {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-danger mt-2" role="alert">
+                      {{ message }}
+                  </div>
+                  {% endfor %}
+          {% endif %}
           <div class="contenedorTop">
             <button type="button" class="btn btn-lg botonTop heading-6">Ya tienes una cuenta?</button>
           </div>

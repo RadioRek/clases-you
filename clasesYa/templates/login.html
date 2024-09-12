@@ -13,6 +13,15 @@
   <img src="{% static '/img/boy1.png' %}" alt="" class="customImg3" />
   <div class="card customCard">
     <!--Temperatura actual-->
+    {% if messages %}
+        <ul class="messages mx-0">
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <h5 class="card-title heading-4 text-center">Bienvenido!</h5>
     <h6 class="card-subtitle text-center parrafo">Ingresa tus datos para iniciar sesion</h6>
     <div class="card-body">
