@@ -35,11 +35,10 @@ getLocation()
         let temperature = data.main.temp;
         let city = data.name;
         let country = data.sys.country;
-        let icon = data.weather[0].icon;
 
         document.getElementById(
           "tiempo"
-        ).innerHTML = `<img src="http://openweathermap.org/img/wn/${icon}.png"> ${temperature}°C ${weather}, ${city} ${country}`;
+        ).innerHTML = `${temperature}°C ${weather}, ${city} ${country}`;
       })
       .catch((error) => {
         console.error("Error:", error);

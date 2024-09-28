@@ -1,0 +1,76 @@
+.container-fluid {
+  background-image: url("/static/img/loginBackground.jpg");
+  height: 100vh;
+  background-size: 100% 100%;
+}
+
+.customRows {
+  height: 100vh;
+}
+
+.customCard {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.botonCustomAyuda {
+  border: solid 1.5px var(--negroTexto) !important;
+}
+
+.botonCustomAyuda:hover {
+  border: solid 1.5px var(--negroTexto) !important;
+  color: var(--grisClaro2) !important;
+  background-color: var(--negroTexto) !important;
+}
+
+.botonCustomLogin {
+  background-color: var(--amarillo);
+  border-color: var(--amarillo);
+  color: var(--negroTexto);
+}
+
+.botonCustomLogin:hover {
+  background-color: var(--amarilloNaranja2);
+  border-color: var(--amarilloNaranja2);
+  color: var(--negroTexto);
+}
+
+.botonTop {
+  background-color: var(--negroTextoFuerte);
+  border-color: var(--negroTextoFuerte);
+  color: var(--grisClaro2);
+}
+
+.botonTop:hover {
+  background-color: var(--gris);
+  border-color: var(--gris);
+  color: var(--negroTextoFuerte);
+}
+
+.customImg2 {
+  width: 20rem;
+  z-index: 0;
+}
+
+@media (max-height: 430px) {
+  .customImg1 {
+    display: none;
+  }
+  .customImg2 {
+    display: none !important;
+  }
+  .customImg3 {
+    display: none;
+  }
+  .ufa {
+    flex: 0 0 auto;
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  .customRows {
+    height: auto;
+    background-image: url("/static/img/loginBackground.jpg");
+    background-size: 100% 100%;
+  }
+}

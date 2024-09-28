@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout, authenticate, login
-from .models import Anuncio, Campo, TipoUsuario, Reserva, ChatRoom, ChatMessage
 from django.http import JsonResponse
 import calendar
 from datetime import datetime
@@ -18,14 +17,31 @@ User = get_user_model()
 def videollamada(request):
     return render(request, "videollamada.html", { 'name': request.user.email })
 
-def loginUser(request):
+def loginBetter(request):
     if request.method == "POST":
         if loginUsuario(request):
             return redirect('home')
         else:
             return redirect('login')
     else:
-        return render(request, "login.html")
+        return render(request, "loginBetter.html")
+    
+def loginUsuario(request):
+    email = request.POST.get('inputEmail')
+    password = request.POST.get('inputPassword')
+    user = authenticate(request, email=email, password=password)
+    if user is not None:
+        login(request, user)
+        return True
+    else:
+        userCheck = User.objects.filter(email=email)
+        if len(userCheck) == 0:
+            messages.error(request, 'Usuario no registrado')
+            return False
+        elif userCheck[0].password != password:
+            messages.error(request, 'Contraseña incorrecta')
+            return False
+        
     
 @login_required
 def home(request):
@@ -163,6 +179,9 @@ def registro(request):
     else:
         return render(request, "registro.html")
 
+def registroBetter(request):
+    return render(request, "registroBetter.html")
+
 # Metodos loquisimos
 def registrarUsuario(request):
     email = request.POST.get('inputEmail')
@@ -174,16 +193,6 @@ def registrarUsuario(request):
         user.save()
         return True
     except:
-        return False
-
-def loginUsuario(request):
-    email = request.POST.get('inputEmail')
-    password = request.POST.get('inputPassword')
-    user = authenticate(request, email=email, password=password)
-    if user is not None:
-        login(request, user)
-        return True
-    else:
         return False
 
 def test(request):

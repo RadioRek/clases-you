@@ -1,61 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root {
+  --negroTextoFuerte: #201f22;
+  --negroTexto: #585759;
+  --gris: #8f8e90;
+  --grisClaro: #c7c7c7;
+  --grisClaro2: #d6d6d6;
+  --azul: #5281fa;
+  --rojo: #fa5e52;
+  --amarillo: #faf252;
+  --amarilloNaranja: #fade52;
+  --amarilloNaranja2: #faca52;
+}
 
 .heading-1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 67px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.986rem;
+  font-weight: bold;
+  color: var(--negroTextoFuerte);
 }
 
 .heading-2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 51px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.488rem;
+  font-weight: normal;
+  color: var(--negroTextoFuerte);
 }
 
 .heading-3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 38px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.074rem;
+  font-weight: bold;
+  color: var(--negroTextoFuerte);
 }
 
 .heading-4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.728rem;
+  font-weight: normal;
+  color: var(--negroTextoFuerte);
 }
 
 .heading-5 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 21px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.44rem;
+  font-weight: bold;
+  color: var(--negroTextoFuerte);
 }
 
 .heading-6 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    color: #201F22;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--negroTextoFuerte);
 }
 
 .parrafo {
-    font-family: 'Comfortaa', sans-serif;
-    color: #585759 !important;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 1rem;
+  color: var(--negroTexto);
 }
 
-.parrafoWhite {
-    font-family: 'Comfortaa', sans-serif;
-    color: whitesmoke !important;
+.headingDark-1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.986rem;
+  font-weight: bold;
+  color: var(--grisClaro);
 }
 
-.headingWhite-5 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 21px;
-    font-weight: normal;
-    color: whitesmoke;
+.headingDark-2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.488rem;
+  font-weight: normal;
+  color: var(--grisClaro);
+}
+
+.headingDark-3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.074rem;
+  font-weight: bold;
+  color: var(--grisClaro);
+}
+
+.headingDark-4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.728rem;
+  font-weight: normal;
+  color: var(--grisClaro);
+}
+
+.headingDark-5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.44rem;
+  font-weight: bold;
+  color: var(--grisClaro);
+}
+
+.headingDark-6 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--grisClaro);
+}
+
+.parrafoDark {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 1rem;
+  color: var(--grisClaro);
+}
+
+.textoError {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.8rem;
+  color: var(--rojo);
 }

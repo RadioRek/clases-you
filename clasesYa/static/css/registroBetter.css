@@ -1,0 +1,52 @@
+.container-fluid {
+  height: 100vh;
+  background-size: 100% 100%;
+}
+
+.customRows {
+  height: 100vh;
+}
+
+.customRows2 {
+  height: 100vh;
+}
+
+.customCol3 {
+  background-image: url("/static/img/linesBg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.customCol1 {
+  background-color: var(--grisClaro);
+}
+
+.botonTop {
+  background-color: var(--negroTextoFuerte);
+  border-color: var(--negroTextoFuerte);
+  color: var(--grisClaro2);
+}
+
+.botonTop:hover {
+  background-color: var(--gris);
+  border-color: var(--gris);
+  color: var(--negroTextoFuerte);
+}
+
+.botonRegistro {
+  background-color: var(--amarillo);
+  border-color: var(--amarillo);
+  color: var(--negroTexto);
+}
+
+.botonRegistro:hover {
+  background-color: var(--amarilloNaranja);
+  border-color: var(--amarilloNaranja);
+  color: var(--negroTexto);
+}
+
+.botonRegistro[disabled] {
+  background-color: var(--grisClaro2);
+  border-color: var(--grisClaro2);
+  color: var(--gris);
+}

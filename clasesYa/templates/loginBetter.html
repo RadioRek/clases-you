@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Nova Teach -- Inicia sesion</title>
+<link rel="stylesheet" href="{% static '/css/loginBetter.css' %}">
+{% endblock head %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="customRows row row-cols-2 row-cols-lg-3 text-center align-items-center pt-2 pt-sm-2">
+        <div class="col d-none d-md-flex justify-content-start align-self-start">
+            <h1 class="parrafo" id="tiempo">Obteniendo clima actual...</h1>
+        </div>
+        <div class="col d-none d-md-block"></div>
+        <div class="col-12 d-flex flex-column flex-sm-row justify-content-end align-self-start">
+            <a class="parrafo mb-2 mb-sm-0 me-sm-4 align-self-center">Nosotros</a>
+            <a href="{% url 'registro' %}" class="parrafo mb-2 mb-sm-0">
+                <button type="button" class="btn botonTop">Registrarse</button>
+            </a>
+        </div>
+        <div class="col d-none d-lg-block">
+            <img src="{% static '/img/coffee.png' %}" alt class="customImg1">
+        </div>
+        <div class="col-12 ufa">
+            <div class="card customCard p-4 rounded-4">
+                <h5 class="card-title heading-4">Bienvenido!</h5>
+                <h6 class="card-subtitle heading-6">Ingresa tus datos para iniciar sesion</h6>
+                <div class="card-body">
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="customInput">
+                            <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
+                            <input type="email" class="form-control parrafo" id="inputEmail" placeholder="Alumno@duocuc.cl" name="inputEmail">
+                        </div>
+                        <div class="customInput mt-4">
+                            <label for="inputPassword" class="form-label parrafo">Contraseña</label>
+                            <input type="password" class="form-control parrafo" id="inputPassword" placeholder="Ingresa tu contraseña" name="inputPassword">
+                        </div>
+                        <div class="mt-4">
+                            <p class="parrafo">
+                                Tu informacion sera salvaguardada seguramente segun nuestras
+                                <a href="#" class="parrafo">Politicas de privacidad</a>
+                            </p>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2">
+                            <div class="col-12 col-sm-4 mt-4 mt-md-0">
+                                <button type="button" class="btn botonCustomAyuda heading-6 w-100">Ayuda?</button>
+                            </div>
+                            <div class="col-12 col-sm-8 mt-4 mt-md-0">
+                                <button type="submit" class="btn botonCustomLogin heading-6 w-100">Login</button>
+                            </div>
+                        </div>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger mt-2" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col d-none d-lg-flex justify-content-md-center">
+            <img src="{% static '/img/boy1.png' %}" alt class="customImg3 w-75">
+        </div>
+        <div class="col d-none d-md-block"></div>
+        <div class="col-12 mt-auto mb-4 text-center ufa">
+            <a href class="parrafo">Terminos de servicio</a>
+        </div>
+        <div class="d-none d-md-block"></div>
+    </div>
+</div>
+<img src="{% static '/img/girl1.png' %}" alt class="customImg2 position-absolute bottom-0 start-0 d-none d-lg-block">
+<script src="{% static '/js/login.js' %}"></script>
+{% endblock body %}
