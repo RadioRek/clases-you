@@ -20,3 +20,119 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.botonCustomRecordar {
+  background-color: var(--amarillo);
+  border-color: var(--amarillo);
+  color: var(--negroTexto);
+}
+
+.botonCustomRecordar:hover {
+  background-color: var(--amarilloNaranja2);
+  border-color: var(--amarilloNaranja2);
+  color: var(--negroTexto);
+}
+
+.sombras {
+  text-shadow: var(--gris) 1px 1px 1px;
+}
+
+.slideInicio, .slidePerfil {
+  transform: scale(0);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: scale(1);
+}
+
+
+.customAvatarProfile {
+  width: 10%;
+}
+
+.customBannerProfile {
+  height: 5rem;
+  width: 80%;
+}
+
+.customBannerContainer {
+  height: 10rem;
+}
+
+
+/* 
+Estilos para las transiciones de los slides
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: scale(0);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: scale(1);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: translateX(0);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: translateY(-100%);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: translateY(0);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: rotate(90deg);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: rotate(0deg);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: scale(0.5);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: scale(1);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: rotateY(90deg);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: rotateY(0deg);
+}
+--------------------------------------------
+.slideInicio, .slidePerfil {
+  transform: rotateX(90deg);
+  transition: transform 0.5s;
+  display: none;
+}
+
+.slideInicio.show, .slidePerfil.show {
+  transform: rotateX(0deg);
+}
+--------------------------------------------
+*/

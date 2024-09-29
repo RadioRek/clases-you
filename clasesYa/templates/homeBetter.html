@@ -16,8 +16,13 @@
             </div>
             <ul class="m-0 p-0">
                 <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
+                    <p class="parrafo menuItem rounded-2 p-2" id="btnSlideInicio">
                         Inicio
+                    </p>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Calendario
                     </p>
                 </a>
                 <a href="#" class="text-decoration-none">
@@ -35,29 +40,144 @@
                         Buscar clases
                     </p>
                 </a>
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
-                        Calendario
-                    </p>
-                </a>
             </ul>
             <div class="text-center">
                 <img src="{% static '/img/laying.png' %}" alt="" class="w-75">
             </div>
-                <div class="profileContainer row p-2 mt-auto">
-                    <div class="col-2">
-                        <img src="{% static '/img/girl3.png' %}" class="w-100">
+            <div class="profileContainer row p-2 mt-auto">
+                <div class="col-2">
+                    <img src="{% static '/img/girl3.png' %}" class="w-100">
+                </div>
+                <div class="col-10 my-auto">
+                    <a href="#" class="text-decoration-none">
+                        <p class="parrafo menuItem rounded-2 p-2 m-0 border-0" id="btnSlidePerfil">
+                            {% if user.nombre and user.apellido %}
+                                {{ user.nombre }} {{ user.apellido }}
+                            {% else %}
+                                Actualiza tu perfil!
+                            {% endif %}
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-9 customCol2">
+            <div class="h-100 slideInicio">
+                <div id="carouselHome" class="carousel slide customCarousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active text-center">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <div>
+                                <h5 class="heading-4 sombras">Personaliza tu perfil</h5>
+                                <p class="parrafo sombras">
+                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <div>
+                                <h5 class="heading-4">Personaliza tu perfil</h5>
+                                <p class="parrafo">
+                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <div>
+                                <h5 class="heading-4">Personaliza tu perfil</h5>
+                                <p class="parrafo">
+                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-10 my-auto">
-                        <a href="#" class="text-decoration-none">
-                            <p class="parrafo menuItem rounded-2 p-2 m-0 border-0">
-                                Nombre Usuario
-                            </p>
-                        </a>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="card w-75 mx-auto">
+                    <h5 class="card-header heading-5">Recordatorios</h5>
+                    <div class="card-body">
+                        <h5 class="card-title heading-6">
+                            Special title treatment
+                        </h5>
+                        <p class="card-text parrafo">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="{% url 'logout' %}" class="btn botonCustomRecordar heading-6">Go somewhere</a>
                     </div>
                 </div>
+            </div>
+            <div class="h-100 slidePerfil">
+                <div class="card profileCard w-75 mx-auto rounded-top-4">
+                    <div class="card-body">
+                        <div class="customBannerContainer">
+                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile">
+                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfile rounded-4">
+                        </div>
+                        <div class="row mx-4 customRow">
+                            <div class="col-6">
+                                <div class="customInput mb-4">
+                                    <label for="inputNombre" class="form-label parrafo">Nombre</label>
+                                    <input type="text" class="form-control parrafo" id="inputNombre" placeholder="{{ user.nombre }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="customInput mb-4">
+                                    <label for="inputApellido" class="form-label parrafo">Apellido</label>
+                                    <input type="text" class="form-control parrafo" id="inputApellido" placeholder="{{ user.apellido }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="customInput mb-4">
+                                    <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
+                                    <input type="email" class="form-control parrafo" id="inputEmail" placeholder="{{ user.email }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="customInput mb-4">
+                                    <label for="inputUsername" class="form-label parrafo">Nombre de usuario</label>
+                                    <input type="text" class="form-control parrafo" id="inputUsername" placeholder="{{ user.username }}">
+                                </div>
+                            </div>
+                            <div class="col-6 customCol">
+                                <div class="customInput mb-4">
+                                    <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
+                                    <input type="file" class="form-control parrafo" id="inputAvatar">
+                                </div>
+                            </div>
+                            <div class="col-6 customCol">
+                                <div class="customInput mb-4">
+                                    <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
+                                    <input type="tel" class="form-control parrafo" id="inputTelefono" placeholder="{{ user.telefono }}">
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="customInput">
+                                    <label for="inputPass" class="form-label parrafo">
+                                        Ingresa tu contraseña para confirmar los
+                    cambios
+                                    </label>
+                                    <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña">
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-center">
+                                <div class="mt-auto">
+                                    <button type="button" class="btn botonCustom heading-6">
+                                        Confirmar cambios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col col-md-9 customCol2"></div>
     </div>
 </div>
 <script src="{% static '/js/homeBetter.js' %}"></script>

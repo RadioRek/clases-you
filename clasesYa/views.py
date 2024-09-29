@@ -207,4 +207,5 @@ def loginUsuario(request):
             return False
             
 def homeBetter(request):
-    return render(request, "homeBetter.html")
+    user = request.user
+    return render(request, "homeBetter.html", { 'user': user })
