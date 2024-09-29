@@ -1,0 +1,22 @@
+.menuItem {
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid var(--grisClaro2);
+}
+
+.menuItem:hover {
+    background-color: var(--grisClaro2)!important;
+}
+
+.profileContainer {
+    border-top: 1px solid var(--grisClaro2);
+}
+
+.customRows {
+    height: 100vh;
+}
+
+.customCol2 {
+  background-image: url("/static/img/linesBg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

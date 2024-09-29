@@ -8,40 +8,13 @@ from datetime import datetime
 import locale
 from django.utils import timezone
 from django.contrib import messages
-
-
+from .models import TipoUsuario
 
 User = get_user_model()
 
 @login_required
 def videollamada(request):
     return render(request, "videollamada.html", { 'name': request.user.email })
-
-def loginBetter(request):
-    if request.method == "POST":
-        if loginUsuario(request):
-            return redirect('home')
-        else:
-            return redirect('login')
-    else:
-        return render(request, "loginBetter.html")
-    
-def loginUsuario(request):
-    email = request.POST.get('inputEmail')
-    password = request.POST.get('inputPassword')
-    user = authenticate(request, email=email, password=password)
-    if user is not None:
-        login(request, user)
-        return True
-    else:
-        userCheck = User.objects.filter(email=email)
-        if len(userCheck) == 0:
-            messages.error(request, 'Usuario no registrado')
-            return False
-        elif userCheck[0].password != password:
-            messages.error(request, 'Contraseña incorrecta')
-            return False
-        
     
 @login_required
 def home(request):
@@ -53,74 +26,35 @@ def home(request):
 
 
     #Carga de usuarios y chats   
-    if user.tipoUsuario.nombre == "Alumno":
-        chatRooms = ChatRoom.objects.filter(idAlumno=user.id)
-        chatMessages = ChatMessage.objects.filter(idChatRoom__in=chatRooms)
-        anuncios = Anuncio.objects.all()
-        reservas = Reserva.objects.filter(idAlumno=user.id)
-
-    elif user.tipoUsuario.nombre == "Profesor":
-        chatRooms = ChatRoom.objects.filter(idProfesor=user.id)
-        chatMessages = ChatMessage.objects.filter(idChatRoom__in=chatRooms)
-        anuncios = Anuncio.objects.all()
-        reservas = Reserva.objects.filter(idProfesor=user.id)
-        
-
     #Funcion para la creacion de un anuncio
     if request.method == "POST":
         if 'anuncioForm' in request.POST:
             if registrarAnuncio(request, user):
                 return render(request, 'home.html', {
                     'user': user, 
-                    'anuncios': anuncios,
                     'calendar': cal, 
                     'month': month, 
                     'year': year, 
                     'monthName': month_name, 
-                    'chatMessages': chatMessages, 
-                    'chatRooms': chatRooms,
-                    'reservas': reservas,
                 })
             else:
                 return render(request, 'home.html', {
                     'user': user, 
-                    'anuncios': anuncios,
                     'calendar': cal, 
                     'month': month, 
                     'year': year, 
                     'monthName': month_name, 
-                    'chatMessages': chatMessages, 
-                    'chatRooms': chatRooms,
-                    'reservas': reservas,
                 })
         elif 'updateAnuncio' in request.POST:
             user = request.user
             anuncio_id = request.POST.get('updateAnuncio')
-            anuncio = Anuncio.objects.get(id=anuncio_id)
-            anuncio.titulo = request.POST.get('inputTitulo')
-            anuncio.subTitulo = request.POST.get('inputSubTitulo')
-            anuncio.descripcion = request.POST.get('inputDescripcion')
-            anuncio.precio = request.POST.get('inputPrecio')
             campo = request.POST.get('inputCampo')
-            campoReview = Campo.objects.filter(nombre=campo)
-
-            if len(campoReview) == 0:
-                nuevoCampo = Campo(nombre=campo)
-                nuevoCampo.save()
-                anuncio.campo = nuevoCampo
-            else:
-                anuncio.campo = campoReview[0]
-            anuncio.save()
             return render(request, 'home.html', {
                 'user': user, 
-                'anuncios': anuncios,
                 'calendar': cal, 
                 'month': month, 
                 'year': year, 
                 'monthName': month_name, 
-                'chatMessages': chatMessages, 
-                'chatRooms': chatRooms,
-                'reservas': reservas,
             })  
         elif 'entrarVideo' in request.POST:
             inputUrl = request.POST['inputUrl']
@@ -130,70 +64,31 @@ def home(request):
             alumnoId = request.POST.get('idAlumno')
             alumno = User.objects.get(id=alumnoId)
             profesorId = User.objects.get(anuncio=anuncioId)
-            nuevaReserva = Reserva(idAlumno=alumno, idProfesor=profesorId)
-            nuevaReserva.save()
             return render(request, 'home.html', {
                 'user': user, 
-                'anuncios': anuncios,
                 'calendar': cal, 
                 'month': month, 
                 'year': year, 
                 'monthName': month_name, 
-                'chatMessages': chatMessages, 
-                'chatRooms': chatRooms,
-                'reservas': reservas,
             })           
         else:
             return render(request, 'home.html', {
                 'user': user, 
-                'anuncios': anuncios,
                 'calendar': cal, 
                 'month': month, 
                 'year': year, 
                 'monthName': month_name, 
-                'chatMessages': chatMessages, 
-                'chatRooms': chatRooms,
-                'reservas': reservas,
             })
     else:
         return render(request, 'home.html', {
             'user': user, 
-            'anuncios': anuncios,
             'calendar': cal, 
             'month': month, 
             'year': year, 
             'monthName': month_name, 
-            'chatMessages': chatMessages, 
-            'chatRooms': chatRooms,
-            'reservas': reservas,
         })
 
-def registro(request):
-    if request.method == 'POST':
-        if registrarUsuario(request):
-            messages.success(request, 'Registro exitoso! ahora puedes iniciar sesion')
-            return redirect('login')
-        else:
-            messages.error(request, 'Error al registrar usuario')
-            return redirect('registro')
-    else:
-        return render(request, "registro.html")
 
-def registroBetter(request):
-    return render(request, "registroBetter.html")
-
-# Metodos loquisimos
-def registrarUsuario(request):
-    email = request.POST.get('inputEmail')
-    password = request.POST.get('inputPassword')
-    tipoUsuario = request.POST.get('selectTipoUsuario')
-    tipoUsuarioBd = TipoUsuario.objects.get(id=tipoUsuario)
-    try:
-        user = User.objects.create_user(email, password, tipoUsuario=tipoUsuarioBd)
-        user.save()
-        return True
-    except:
-        return False
 
 def test(request):
     return render(request, "test.html")
@@ -255,3 +150,61 @@ def superuser_required(view_func):
 def anuncio_list(request):
     anuncios = Anuncio.objects.all()
     return render(request, 'anuncio_list.html', {'anuncios': anuncios})
+
+# remake
+def registro(request):
+    if request.method == 'POST':
+        if registrarUsuario(request):
+            return redirect('login')
+        else:
+            return redirect('registro')
+    else:
+        return render(request, "registro.html")
+
+def registrarUsuario(request):
+    correo = request.POST.get('inputEmail')
+    password = request.POST.get('inputPassword')
+    tipo = request.POST.get('selectTipoUsuario')
+    tipoUsuario = TipoUsuario.objects.get(id=tipo)
+    nombre = ""
+    apellido = ""
+    rut = ""
+    dv = ""
+    telefono = ""
+    validacionUser = User.objects.filter(correo=correo)
+    if len(validacionUser) > 0:
+        messages.error(request, 'Correo ya registrado!')
+        return False
+    usuario = User(correo=correo, nombre=nombre, apellido=apellido, rut=rut, dv=dv, telefono=telefono, tipo=tipoUsuario)
+    usuario.set_password(password)
+    usuario.save()
+    messages.success(request, 'Registro exitoso! ahora puedes iniciar sesion')       
+    return True
+
+def loginWebsite(request):
+    if request.method == 'POST':
+        if loginUsuario(request):
+            return redirect('home')
+        else:
+            return redirect('login')
+    else:
+        return render(request, "login.html")
+
+def loginUsuario(request):
+    correo = request.POST.get('inputEmail')
+    password = request.POST.get('inputPassword')
+    user = authenticate(request, correo=correo, password=password)
+    if user is not None:     
+        login(request, user)
+        return True
+    else:
+        user = User.objects.filter(correo=correo)
+        if len(user) == 0:
+            messages.error(request, 'Usuario no existe!')
+            return False
+        else:
+            messages.error(request, 'Contraseña incorrecta!')
+            return False
+            
+def homeBetter(request):
+    return render(request, "homeBetter.html")

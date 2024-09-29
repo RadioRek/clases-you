@@ -26,7 +26,7 @@
             <div class="card customCard p-4 rounded-4">
                 <h5 class="card-title heading-4">Bienvenido!</h5>
                 <h6 class="card-subtitle heading-6">Ingresa tus datos para iniciar sesion</h6>
-                <div class="card-body">
+                <div class="card-body pb-0">
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="customInput">
@@ -52,11 +52,17 @@
                             </div>
                         </div>
                         {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-danger mt-2" role="alert">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
+                            {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger m-0 mt-4 w-75 mx-auto" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% elif message.tags == 'success' %}
+                                    <div class="alert alert-success mt-4 w-75 mx-auto" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                     </form>
                 </div>

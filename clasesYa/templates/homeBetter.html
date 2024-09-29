@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Registro</title>
+<link rel="stylesheet" href="{% static '/css/homeBetter.css' %}">
+{% endblock head %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row customRows">
+        <div class="col col-md-3 d-flex flex-column">
+            <div class="d-flex mb-4">
+                <img src="{% static '/img/cat.png' %}" alt="Logo" class="img-fluid w-25 align-self-center">
+                <h1 class="heading-4 align-self-center">Que vamos a estudiar hoy?</h1>
+            </div>
+            <ul class="m-0 p-0">
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Inicio
+                    </p>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Chat
+                    </p>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Ingresa a tu clase
+                    </p>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Buscar clases
+                    </p>
+                </a>
+                <a href="#" class="text-decoration-none">
+                    <p class="parrafo menuItem rounded-2 p-2">
+                        Calendario
+                    </p>
+                </a>
+            </ul>
+            <div class="text-center">
+                <img src="{% static '/img/laying.png' %}" alt="" class="w-75">
+            </div>
+                <div class="profileContainer row p-2 mt-auto">
+                    <div class="col-2">
+                        <img src="{% static '/img/girl3.png' %}" class="w-100">
+                    </div>
+                    <div class="col-10 my-auto">
+                        <a href="#" class="text-decoration-none">
+                            <p class="parrafo menuItem rounded-2 p-2 m-0 border-0">
+                                Nombre Usuario
+                            </p>
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <div class="col col-md-9 customCol2"></div>
+    </div>
+</div>
+<script src="{% static '/js/homeBetter.js' %}"></script>
+{% endblock body %}

@@ -2,90 +2,96 @@
 {% load static %}
 
 {% block head %}
-  <title>Registro</title>
-  <link rel="stylesheet" href="{% static '/css/registro.css' %}" />
-{% endblock %}
+<title>Registro</title>
+<link rel="stylesheet" href="{% static '/css/registroBetter.css' %}">
+{% endblock head %}
 
 {% block body %}
-  <div class="mainContainer">
-    {% comment %}CONTENEDOR IZQUIEDA{% endcomment %}
-    <div class="leftMostContainer"></div>
-
-    {% comment %}CONTENEDOR CENTRO{% endcomment %}
-    <div class="leftContainer">
-      <h4 class="heading-5 tituloCustom">Ingresa tus datos para registrarte en la plataforma y comenzar a buscar apoyo academico!</h4>
-      <form method="POST" action="{% url 'registro' %}">
-        {% csrf_token %}
-        {% comment %}INPUT CORREO ELECTRONICO{% endcomment %}
-        <div class="customInput">
-          <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
-
-          <input type="email" class="form-control parrafo" id="inputEmail" placeholder="Alumno@duocuc.cl" name="inputEmail" />
-          <p class="parrafo error">Necesitas un email valido!</p>
+<div class="container-fluid">
+    <div class="row customRows">
+        <div class="col-1 customCol1 d-none d-md-block"></div>
+        <div class="col col-md-6 text-center my-auto">
+            <h4 class="heading-5 w-75 mx-auto">Ingresa tus datos para registrarte en la plataforma y comenzar a buscar apoyo academico!</h4>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger mt-4 w-75 mx-auto" role="alert">
+                            {{ message }}
+                        </div>
+                    {% elif message.tags == 'success' %}
+                        <div class="alert alert-success mt-4 w-75 mx-auto" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <form method="POST" action="{% url 'registro' %}">
+                {% csrf_token %}
+                <div class="customInput w-75 mx-auto mt-4">
+                    <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
+                    <input type="email" class="form-control parrafo" id="inputEmail" placeholder="Alumno@duocuc.cl" name="inputEmail">
+                </div>
+                <div class="customInput w-75 mx-auto mt-2">
+                    <label for="inputPassword" class="form-label parrafo">Contraseña</label>
+                    <input type="password" class="form-control parrafo" id="inputPassword" placeholder="Ingresa tu contraseña" name="inputPassword">
+                </div>
+                <div class="customInput w-75 mx-auto mt-2">
+                    <label for="inputConfirmarPassword" class="form-label parrafo">Confirmar contraseña</label>
+                    <input type="password" class="form-control parrafo" id="inputConfirmarPassword" placeholder="Confirma tu contraseña" name="inputConfirmarPassword">
+                </div>
+                <h1 class="textoError pt-2" id="errorPassword">Las contraseñas no coinciden</h1>
+                <div class="customInput w-75 mx-auto mt-2">
+                    <label for="selectTipoUsuario" class="form-label parrafo">Selecciona tu tipo de usuario</label>
+                    <select class="form-select parrafo" aria-label="Default select example" id="selectTipoUsuario" name="selectTipoUsuario">
+                        <option value="1" selected>Profesor</option>
+                        <option value="2">Alumno</option>
+                    </select>
+                </div>
+                <div class="checkContainer mt-4 px-4">
+                    <input class="form-check-input" type="checkbox" value="" id="termCheckBox">
+                    <label class="form-check-label parrafo" for="termCheckBox">
+                        Acepto los
+                        <a href="" class="parrafo">terminos y condiciones</a>
+                        de Clases Ya!
+                    </label>
+                    <p class="textoError" id="errorTerminos">Debe aceptar los terminos para continuar</p>
+                </div>
+                <div class="checkContainer mt-2 px-4">
+                    <input class="form-check-input" type="checkbox" value="" id="privaCheckBox">
+                    <label class="form-check-label parrafo" for="privaCheckBox">
+                        Estoy de acuerdo con las
+                        <a href="" class="parrafo">politicas de privacidad</a>
+                        de Clases Ya!
+                    </label>
+                    <p class="textoError" id="errorPrivacidad">Debe estar de acuerdo para continuar</p>
+                </div>
+                <button type="submit" class="btn btn-lg botonRegistro heading-6 mt-4" id="botonRegistro">Registrarse</button>
+            </form>
         </div>
-
-        {% comment %}INPUT CONTRASEÑA{% endcomment %}
-        <div class="customInput">
-          <label for="inputPassword" class="form-label parrafo">Contraseña</label>
-
-          <input type="password" class="form-control parrafo" id="inputPassword" placeholder="Ingresa tu contraseña" name="inputPassword" />
+        <div class="col col-lg-5 d-none d-md-block customCol3">
+            <div class="row row-cols-3 customRows2 text-center align-items-center p-2">
+                <div class="col"></div>
+                <div class="col">
+                    <img src="{% static '/img/walking.png' %}" alt="" class="img1 w-75">
+                </div>
+                <div class="col d-flex justify-content-end align-self-start p-0">
+                    <a href="{% url 'login' %}" class="parrafo mb-2 mb-sm-0">
+                        <button type="button" class="btn botonTop">Ya tienes una cuenta?</button>
+                    </a>
+                </div>
+                <div class="col">
+                    <img src="{% static '/img/boy.png' %}" alt="" class="img2 w-75">
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col d-flex justify-content-end">
+                    <img src="{% static '/img/sitImg.png' %}" alt="" class="img3 w-75">
+                </div>
+            </div>
         </div>
-
-        {% comment %}INPUT CONTRASEÑA CONFIRMAR{% endcomment %}
-        <div class="customInput">
-          <label for="inputConfirmarPassword" class="form-label parrafo">Confirmar contraseña</label>
-
-          <input type="password" class="form-control parrafo" id="inputConfirmarPassword" placeholder="Confirma tu contraseña" name="inputConfirmarPassword" />
-          <p class="parrafo error">Las contraseñas no coinciden</p>
-        </div>
-
-        {% comment %}INPUT TIPO DE USUARIO{% endcomment %}
-        <div class="customInput">
-          <label for="selectTipoUsuario" class="form-label parrafo">Selecciona tu tipo de usuario</label>
-
-          <select class="form-select parrafo" aria-label="Default select example" id="selectTipoUsuario" name="selectTipoUsuario">
-            <option value="1" selected>Profesor</option>
-            <option value="2">Alumno</option>
-          </select>
-        </div>
-
-        {% comment %}INPUT TERMINOS Y CONDICIONES{% endcomment %}
-        <div class="checkContainer">
-          <input class="form-check-input" type="checkbox" value="" id="termCheckBox" />
-          <label class="form-check-label parrafo" for="termCheckBox">
-            Acepto los
-            <a href="" class="parrafo">terminos y condiciones</a>
-            de Clases Ya!
-          </label>
-          <p class="parrafo error">Debe estar de acuerdo para continuar</p>
-        </div>
-
-        {% comment %}INPUT POLITICAS DE PRIVACIDAD{% endcomment %}
-        <div class="checkContainer">
-          <input class="form-check-input" type="checkbox" value="" id="privaCheckBox" />
-          <label class="form-check-label parrafo" for="privaCheckBox">
-            Estoy de acuerdo con las
-            <a href="" class="parrafo">politicas de privacidad</a>
-            de Clases Ya!
-          </label>
-          <p class="parrafo error">Debe estar de acuerdo para continuar</p>
-        </div>
-
-        {% comment %}BOTON REGISTRARSE Y YA TIENES UNA CUENTA{% endcomment %}
-        <div>
-
-        </div>
-      </form>
     </div>
-
-    {% comment %}CONTENEDOR DERECHA{% endcomment %}
-    <div class="rightContainer">
-      {% comment %}IMAGENES{% endcomment %}
-      <img src="{% static '/img/walking.png' %}" alt="" class="img1" />
-      <img src="{% static '/img/boy.png' %}" alt="" class="img2" />
-      <img src="{% static '/img/sitImg.png' %}" alt="" class="img3" />
-    </div>
-  </div>
-
-  <script src="{% static '/js/registro.js' %}"></script>
-{% endblock %}
+</div>
+<script src="{% static '/js/registroBetter.js' %}"></script>
+{% endblock body %}

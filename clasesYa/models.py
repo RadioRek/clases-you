@@ -38,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     rut = models.CharField(max_length = 10, blank=True, default='')
     dv = models.CharField(max_length = 1, blank=True, default='')
     telefono = models.CharField(max_length=15, blank=True, default='0')
-    Tipo = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True)
+    tipo = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE, null=True)
     
     is_active = models.BooleanField(default = True)
     is_superuser = models.BooleanField(default = False)
