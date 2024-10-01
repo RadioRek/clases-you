@@ -209,3 +209,7 @@ def loginUsuario(request):
 def homeBetter(request):
     user = request.user
     return render(request, "homeBetter.html", { 'user': user })
+
+def actualizarUsuario(request):
+    user = request.user
+    nombre = request.POST.get('inputNombre')

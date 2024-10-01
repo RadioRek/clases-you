@@ -4,21 +4,22 @@
 }
 
 .menuItem:hover {
-    background-color: var(--grisClaro2)!important;
+  background-color: var(--grisClaro2) !important;
 }
 
 .profileContainer {
-    border-top: 1px solid var(--grisClaro2);
+  border-top: 1px solid var(--grisClaro2);
 }
 
 .customRows {
-    height: 100vh;
+  height: 100vh;
 }
 
 .customCol2 {
   background-image: url("/static/img/linesBg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 
 .botonCustomRecordar {
@@ -33,34 +34,58 @@
   color: var(--negroTexto);
 }
 
+.botonCustomPerfil {
+  background-color: var(--amarillo);
+  border-color: var(--amarillo);
+  color: var(--negroTexto);
+}
+
+.botonCustomPerfil:hover {
+  background-color: var(--amarilloNaranja2);
+  border-color: var(--amarilloNaranja2);
+  color: var(--negroTexto);
+}
+
 .sombras {
   text-shadow: var(--gris) 1px 1px 1px;
 }
 
-.slideInicio, .slidePerfil {
+.slideInicio,
+.slidePerfil {
   transform: scale(0);
   transition: transform 0.5s;
   display: none;
 }
 
-.slideInicio.show, .slidePerfil.show {
+.slideInicio.show,
+.slidePerfil.show {
   transform: scale(1);
 }
 
+.customBannerContainer {
+  display: grid;
+  grid-template-columns: 3fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+}
 
 .customAvatarProfile {
   width: 10%;
+  grid-area: 1 / 1;
+  z-index: 1;
 }
 
 .customBannerProfile {
   height: 5rem;
   width: 80%;
+  grid-area: 1 / 1;
+  z-index: 0;
 }
 
-.customBannerContainer {
-  height: 10rem;
+.animating {
+  overflow: hidden;
+  transition: overflow 0s;
 }
-
 
 /* 
 Estilos para las transiciones de los slides

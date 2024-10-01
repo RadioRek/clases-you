@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="col col-md-9 customCol2">
-            <div class="h-100 slideInicio">
+            <div class="h-100 slideInicio py-4">
                 <div id="carouselHome" class="carousel slide customCarousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active text-center">
@@ -113,67 +113,73 @@
                     </div>
                 </div>
             </div>
-            <div class="h-100 slidePerfil">
-                <div class="card profileCard w-75 mx-auto rounded-top-4">
+            <div class="h-100 slidePerfil py-4 d-flex">
+                <div class="card profileCard w-75 mx-auto align-self-center rounded-top-4">
                     <div class="card-body">
-                        <div class="customBannerContainer">
+                        <div class="customBannerContainer mb-4">
                             <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile">
                             <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfile rounded-4">
                         </div>
-                        <div class="row mx-4 customRow">
-                            <div class="col-6">
-                                <div class="customInput mb-4">
-                                    <label for="inputNombre" class="form-label parrafo">Nombre</label>
-                                    <input type="text" class="form-control parrafo" id="inputNombre" placeholder="{{ user.nombre }}">
+                        <form action="{% url 'homeBetter' %}" method="POST">
+                            <div class="row mx-4 customRow">
+                                {% csrf_token %}
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputNombre" class="form-label parrafo">Nombre</label>
+                                        <input type="text" class="form-control parrafo" id="inputNombre" placeholder="{{ user.nombre }}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputApellido" class="form-label parrafo">Apellido</label>
+                                        <input type="text" class="form-control parrafo" id="inputApellido" placeholder="{{ user.apellido }}">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
+                                        <input type="email" class="form-control parrafo" id="inputEmail" placeholder="{{ user.email }}">
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="customInput mb-2 w-75 me-2">
+                                        <label for="inputRut" class="form-label parrafo">Rut</label>
+                                        <input type="text" class="form-control parrafo" id="inputRut" placeholder="{{ user.rut }}">
+                                    </div>
+                                    <div class="customInput mb-2 w-25">
+                                        <label for="inputDv" class="form-label parrafo">Dv</label>
+                                        <input type="text" class="form-control parrafo" id="inputDv" placeholder="{{ user.dv }}">
+                                    </div>
+                                </div>
+                                <div class="col-6 customCol">
+                                    <div class="customInput mb-2">
+                                        <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
+                                        <input type="file" class="form-control parrafo" id="inputAvatar">
+                                    </div>
+                                </div>
+                                <div class="col-6 customCol">
+                                    <div class="customInput mb-2">
+                                        <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
+                                        <input type="tel" class="form-control parrafo" id="inputTelefono" placeholder="{{ user.telefono }}">
+                                    </div>
+                                </div>
+                                <div class="col-6 mt-5">
+                                    <div class="customInput">
+                                        <label for="inputPass" class="form-label parrafo">
+                                            Ingresa tu contraseña para confirmar los cambios
+                                        </label>
+                                        <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña">
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex justify-content-center mt-5">
+                                    <div class="mt-auto w-100">
+                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100">
+                                            Confirmar cambios
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="customInput mb-4">
-                                    <label for="inputApellido" class="form-label parrafo">Apellido</label>
-                                    <input type="text" class="form-control parrafo" id="inputApellido" placeholder="{{ user.apellido }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="customInput mb-4">
-                                    <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
-                                    <input type="email" class="form-control parrafo" id="inputEmail" placeholder="{{ user.email }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="customInput mb-4">
-                                    <label for="inputUsername" class="form-label parrafo">Nombre de usuario</label>
-                                    <input type="text" class="form-control parrafo" id="inputUsername" placeholder="{{ user.username }}">
-                                </div>
-                            </div>
-                            <div class="col-6 customCol">
-                                <div class="customInput mb-4">
-                                    <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
-                                    <input type="file" class="form-control parrafo" id="inputAvatar">
-                                </div>
-                            </div>
-                            <div class="col-6 customCol">
-                                <div class="customInput mb-4">
-                                    <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
-                                    <input type="tel" class="form-control parrafo" id="inputTelefono" placeholder="{{ user.telefono }}">
-                                </div>
-                            </div>
-                            <div class="col-6 mt-4">
-                                <div class="customInput">
-                                    <label for="inputPass" class="form-label parrafo">
-                                        Ingresa tu contraseña para confirmar los
-                    cambios
-                                    </label>
-                                    <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña">
-                                </div>
-                            </div>
-                            <div class="col-6 d-flex justify-content-center">
-                                <div class="mt-auto">
-                                    <button type="button" class="btn botonCustom heading-6">
-                                        Confirmar cambios
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
