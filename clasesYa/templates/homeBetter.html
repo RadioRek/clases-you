@@ -30,11 +30,13 @@
                         Chat
                     </p>
                 </a>
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
-                        Ingresa a tu clase
-                    </p>
-                </a>
+                {% if user.tipo.nombreTipo == "1" %}
+                    <a href="#" class="text-decoration-none">
+                        <p class="parrafo menuItem rounded-2 p-2">
+                            Mi anuncio
+                        </p>
+                    </a>
+                {% endif %}
                 <a href="#" class="text-decoration-none">
                     <p class="parrafo menuItem rounded-2 p-2">
                         Buscar clases
@@ -114,7 +116,7 @@
                 </div>
             </div>
             <div class="slidePerfil py-4 d-flex h-100">
-                <div class="card profileCard w-75 mx-auto align-self-center rounded-4">
+                <div class="card profileCard w-75 mx-auto align-self-center rounded-4 py-4">
                     <div class="card-body">
                         <div class="customBannerContainer mb-4">
                             <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile">
@@ -183,6 +185,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     {% if messages %}
@@ -194,7 +197,7 @@
                             <strong class="me-auto heading-6">Ha ocurrido un error</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <div class="toast-body parrafo">
+                        <div class="toast-body textoError">
                             {{ message }}
                         </div>
                     </div>

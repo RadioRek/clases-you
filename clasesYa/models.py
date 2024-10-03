@@ -29,7 +29,7 @@ class TipoUsuario(models.Model):
         verbose_name_plural = 'Tipos de usuarios'
         
     def __str__(self):
-        return self.nombreTipo
+        return self.get_nombreTipo_display()
     
 class User(AbstractBaseUser, PermissionsMixin):
     correo = models.EmailField(blank = True, default='', unique=True)

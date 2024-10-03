@@ -270,6 +270,8 @@ def actualizarUsuario(request):
             user.save()
             messages.success(request, 'Cambios guardados exitosamente!')
             return True
+        
+
     
     
     
