@@ -175,6 +175,9 @@ def registrarUsuario(request):
     if len(validacionUser) > 0:
         messages.error(request, 'Correo ya registrado!')
         return False
+    if correo == "" or password == "":
+        messages.error(request, 'Correo y contraseña son obligatorios!')
+        return False
     usuario = User(correo=correo, nombre=nombre, apellido=apellido, rut=rut, dv=dv, telefono=telefono, tipo=tipoUsuario)
     usuario.set_password(password)
     usuario.save()
@@ -207,9 +210,67 @@ def loginUsuario(request):
             return False
             
 def homeBetter(request):
-    user = request.user
-    return render(request, "homeBetter.html", { 'user': user })
+    user = request.user  
+    if request.method == "POST":
+        if 'actualizarPerfil' in request.POST:
+            actualizarUsuario(request)
+            return render(request, "homeBetter.html", { 'user': user })
+    else:    
+        return render(request, "homeBetter.html", { 'user': user })
 
 def actualizarUsuario(request):
     user = request.user
     nombre = request.POST.get('inputNombre')
+    apellido = request.POST.get('inputApellido')
+    correo = request.POST.get('inputEmail')
+    rut = request.POST.get('inputRut')
+    dv = request.POST.get('inputDv')
+    telefono = request.POST.get('inputTelefono')
+    inputPassword = request.POST.get('inputPass')
+    if not all([nombre, apellido, correo, rut, dv, telefono]):        
+        messages.error(request, 'Todos los campos son obligatorios!')
+        return False
+    else:
+        # validacion correo
+        validacionCorreo = User.objects.filter(correo=correo)
+        if len(validacionCorreo) > 0 and validacionCorreo[0].id != user.id:
+            messages.error(request, 'Correo ya registrado!')
+            return False
+        # validacion nombre contiene numeros
+        elif any(char.isdigit() for char in nombre):
+            messages.error(request, 'Nombre no puede contener numeros!')
+            return False
+        # validacion apellido contiene numeros
+        elif any(char.isdigit() for char in apellido):
+            messages.error(request, 'Apellido no puede contener numeros!')
+            return False
+        # validacion rut
+        elif not rut.isdigit():
+            messages.error(request, 'Rut debe ser numerico!')
+            return False
+        # validacion dv numero o k
+        elif dv != 'k' and not dv.isdigit():
+            messages.error(request, 'Dv debe ser numerico o k!')
+            return False
+        # validacion telefono
+        elif not telefono.isdigit():
+            messages.error(request, 'Telefono debe ser numerico!')
+            return False
+        # validacion password para confirmar cambios
+        elif not user.check_password(inputPassword):
+            messages.error(request, 'Contraseña incorrecta!')
+            return False
+        else:
+            user.nombre = nombre
+            user.apellido = apellido
+            user.correo = correo
+            user.rut = rut
+            user.dv = dv
+            user.telefono = telefono
+            user.save()
+            messages.success(request, 'Cambios guardados exitosamente!')
+            return True
+    
+    
+    
+        

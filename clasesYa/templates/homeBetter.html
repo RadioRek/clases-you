@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="col col-md-9 customCol2">
-            <div class="h-100 slideInicio py-4">
+            <div class="slideInicio h-100">
                 <div id="carouselHome" class="carousel slide customCarousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active text-center">
@@ -113,8 +113,8 @@
                     </div>
                 </div>
             </div>
-            <div class="h-100 slidePerfil py-4 d-flex">
-                <div class="card profileCard w-75 mx-auto align-self-center rounded-top-4">
+            <div class="slidePerfil py-4 d-flex h-100">
+                <div class="card profileCard w-75 mx-auto align-self-center rounded-4">
                     <div class="card-body">
                         <div class="customBannerContainer mb-4">
                             <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile">
@@ -126,41 +126,41 @@
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputNombre" class="form-label parrafo">Nombre</label>
-                                        <input type="text" class="form-control parrafo" id="inputNombre" placeholder="{{ user.nombre }}">
+                                        <input type="text" class="form-control parrafo" id="inputNombre" value="{{ user.nombre }}" name="inputNombre">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputApellido" class="form-label parrafo">Apellido</label>
-                                        <input type="text" class="form-control parrafo" id="inputApellido" placeholder="{{ user.apellido }}">
+                                        <input type="text" class="form-control parrafo" id="inputApellido" value="{{ user.apellido }}" name="inputApellido">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
-                                        <input type="email" class="form-control parrafo" id="inputEmail" placeholder="{{ user.email }}">
+                                        <input type="email" class="form-control parrafo" id="inputEmail" value="{{ user.correo }}" name="inputEmail" readonly onfocus="this.removeAttribute('readonly');">
                                     </div>
                                 </div>
                                 <div class="col-6 d-flex">
                                     <div class="customInput mb-2 w-75 me-2">
                                         <label for="inputRut" class="form-label parrafo">Rut</label>
-                                        <input type="text" class="form-control parrafo" id="inputRut" placeholder="{{ user.rut }}">
+                                        <input type="text" class="form-control parrafo" id="inputRut" value="{{ user.rut }}" name="inputRut">
                                     </div>
                                     <div class="customInput mb-2 w-25">
                                         <label for="inputDv" class="form-label parrafo">Dv</label>
-                                        <input type="text" class="form-control parrafo" id="inputDv" placeholder="{{ user.dv }}">
+                                        <input type="text" class="form-control parrafo" id="inputDv" value="{{ user.dv }}" name="inputDv">
                                     </div>
                                 </div>
                                 <div class="col-6 customCol">
                                     <div class="customInput mb-2">
                                         <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
-                                        <input type="file" class="form-control parrafo" id="inputAvatar">
+                                        <input type="file" class="form-control parrafo" id="inputAvatar" name="inputAvatar">
                                     </div>
                                 </div>
                                 <div class="col-6 customCol">
                                     <div class="customInput mb-2">
                                         <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
-                                        <input type="tel" class="form-control parrafo" id="inputTelefono" placeholder="{{ user.telefono }}">
+                                        <input type="tel" class="form-control parrafo" id="inputTelefono" value="{{ user.telefono }}" name="inputTelefono">
                                     </div>
                                 </div>
                                 <div class="col-6 mt-5">
@@ -168,12 +168,12 @@
                                         <label for="inputPass" class="form-label parrafo">
                                             Ingresa tu contraseña para confirmar los cambios
                                         </label>
-                                        <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña">
+                                        <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña" name="inputPass" readonly onfocus="this.removeAttribute('readonly');">
                                     </div>
                                 </div>
                                 <div class="col-6 d-flex justify-content-center mt-5">
                                     <div class="mt-auto w-100">
-                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100">
+                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100" name="actualizarPerfil">
                                             Confirmar cambios
                                         </button>
                                     </div>
@@ -185,6 +185,35 @@
             </div>
         </div>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header">
+                            <strong class="me-auto heading-6">Ha ocurrido un error</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body parrafo">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            {% elif message.tags == 'success' %}
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header">
+                            <strong class="me-auto heading-6">Operación exitosa</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body parrafo">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 </div>
 <script src="{% static '/js/homeBetter.js' %}"></script>
 {% endblock body %}
