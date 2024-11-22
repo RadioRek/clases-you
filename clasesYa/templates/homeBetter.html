@@ -1,97 +1,64 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block head %}
+{% extends 'base.html' %} {% load static %} {% block head %}
 <title>Registro</title>
-<link rel="stylesheet" href="{% static '/css/homeBetter.css' %}">
-{% endblock head %}
-
-{% block body %}
+<link rel="stylesheet" href="{% static '/css/homeBetter.css' %}" />
+{% endblock %} {% block body %}
 <div class="container-fluid">
     <div class="row customRows">
         <div class="col col-md-3 d-flex flex-column">
             <div class="d-flex mb-4">
-                <img src="{% static '/img/cat.png' %}" alt="Logo" class="img-fluid w-25 align-self-center">
+                <img src="{% static '/img/cat.png' %}" alt="Logo" class="img-fluid w-25 align-self-center" />
                 <h1 class="heading-4 align-self-center">Que vamos a estudiar hoy?</h1>
             </div>
             <ul class="m-0 p-0">
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2" id="btnSlideInicio">
-                        Inicio
-                    </p>
-                </a>
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
-                        Calendario
-                    </p>
-                </a>
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
-                        Chat
-                    </p>
-                </a>
-                {% if user.tipo.nombreTipo == "1" %}
-                    <a href="#" class="text-decoration-none">
-                        <p class="parrafo menuItem rounded-2 p-2">
-                            Mi anuncio
-                        </p>
-                    </a>
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2" id="btnSlideInicio">Inicio</p></a>
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2">Calendario</p></a>
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2">Chat</p></a>
+                {% if user.tipo.nombreTipo == '1' %}
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2" id="btnSlideMiAnuncio">Mi anuncio</p></a>
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2">Equisde</p></a>
+                {% elif user.tipo.nombreTipo == '2' %}
+                <a href="#" class="text-decoration-none"><p class="parrafo menuItem rounded-2 p-2">Buscar clases</p></a>
                 {% endif %}
-                <a href="#" class="text-decoration-none">
-                    <p class="parrafo menuItem rounded-2 p-2">
-                        Buscar clases
-                    </p>
-                </a>
             </ul>
             <div class="text-center">
-                <img src="{% static '/img/laying.png' %}" alt="" class="w-75">
+                <img src="{% static '/img/laying.png' %}" alt="" class="w-75" />
             </div>
             <div class="profileContainer row p-2 mt-auto">
                 <div class="col-2">
-                    <img src="{% static '/img/girl3.png' %}" class="w-100">
+                    <img src="{% static '/img/girl3.png' %}" class="w-100" />
                 </div>
                 <div class="col-10 my-auto">
                     <a href="#" class="text-decoration-none">
                         <p class="parrafo menuItem rounded-2 p-2 m-0 border-0" id="btnSlidePerfil">
-                            {% if user.nombre and user.apellido %}
-                                {{ user.nombre }} {{ user.apellido }}
-                            {% else %}
-                                Actualiza tu perfil!
-                            {% endif %}
+                            {% if user.nombre and user.apellido %} {{ user.nombre }} {{ user.apellido }} {% else %} Actualiza tu perfil! {% endif %}
                         </p>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col col-md-9 customCol2">
-            <div class="slideInicio h-100">
+        <div class="col col-md-9 customCol2 d-flex">
+            <div class="slideInicio w-100 my-auto">
                 <div id="carouselHome" class="carousel slide customCarousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active text-center">
-                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto" />
                             <div>
                                 <h5 class="heading-4 sombras">Personaliza tu perfil</h5>
-                                <p class="parrafo sombras">
-                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
-                                </p>
+                                <p class="parrafo sombras">Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza</p>
                             </div>
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto" />
                             <div>
                                 <h5 class="heading-4">Personaliza tu perfil</h5>
-                                <p class="parrafo">
-                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
-                                </p>
+                                <p class="parrafo">Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza</p>
                             </div>
                         </div>
                         <div class="carousel-item text-center">
-                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto">
+                            <img src="{% static '/img/custom.png' %}" class="w-25 mx-auto" />
                             <div>
                                 <h5 class="heading-4">Personaliza tu perfil</h5>
-                                <p class="parrafo">
-                                    Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza
-                                </p>
+                                <p class="parrafo">Un perfil personalizado ayudara a tus estudiantes a tener una mejor idea de tus metodos de enseñanza</p>
                             </div>
                         </div>
                     </div>
@@ -105,22 +72,133 @@
                 <div class="card w-75 mx-auto">
                     <h5 class="card-header heading-5">Recordatorios</h5>
                     <div class="card-body">
-                        <h5 class="card-title heading-6">
-                            Special title treatment
-                        </h5>
-                        <p class="card-text parrafo">
-                            With supporting text below as a natural lead-in to additional content.
-                        </p>
+                        <h5 class="card-title heading-6">Special title treatment</h5>
+                        <p class="card-text parrafo">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="{% url 'logout' %}" class="btn botonCustomRecordar heading-6">Go somewhere</a>
                     </div>
                 </div>
             </div>
-            <div class="slidePerfil py-4 d-flex h-100">
-                <div class="card profileCard w-75 mx-auto align-self-center rounded-4 py-4">
+            {% if user.tipo.nombreTipo == '1' %} {% if anuncio %}
+            <div class="slideMiAnuncio w-100 my-auto">
+                <div class="card text-center w-75 mx-auto rounded-4 customCardAnuncio">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="customBannerContainerAnuncio mb-4">
+                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfileAnuncio" />
+                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfileAnuncio rounded-4" />
+                        </div>
+                        <!-- Anuncio creado -->
+                        <div class="row">
+							<div class="col-12">
+								<h1 class="heading-4">Este es tu anuncio OWO</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">Titulo:</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">{{ anuncio.titulo }}</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">Subtitulo:</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">{{ anuncio.subtitulo }}</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">Descripcion:</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">{{ anuncio.descripcion }}</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">Precio:</h1>
+							</div>
+							<div class="col-6">
+								<h1 class="heading-5">${{ anuncio.precio }}</h1>
+							</div>
+							<!-- boton para modificar anuncio-->
+							<div class="col-12">
+								<div class="mt-5">
+									<button type="button" class="btn btn-sm botonCustomPerfil heading-6 w-100" id="btnModificarAnuncio">Modificar anuncio</button>
+								</div>
+							</div>					
+						</div>
+                    </div>
+                    <div class="card-footer text-body-secondary"></div>
+                </div>
+            </div>
+            {% else %}
+
+            <div class="slideMiAnuncio w-100 my-auto">
+                <div class="card text-center w-75 mx-auto rounded-4 customCardAnuncio">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="customBannerContainerAnuncio mb-4">
+                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfileAnuncio" />
+                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfileAnuncio rounded-4" />
+                        </div>
+                        <!-- Formulario creacion de anuncio -->
+
+                        <!-- 
+									titulo = models.CharField(max_length=255)
+									subtitulo = models.CharField(max_length=255, blank=True, null=True)
+									descripcion = models.TextField()
+									precio = models.DecimalField(max_digits=10, decimal_places=2)
+									usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+									tags = models.ManyToManyField(Tag)
+								-->
+                        <form action="{% url 'homeBetter' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputTitulo" class="form-label parrafo">Titulo</label>
+                                        <h1></h1>
+                                        <input type="text" class="form-control parrafo" id="inputTitulo" name="inputTitulo" />
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputSubtitulo" class="form-label parrafo">Subtitulo</label>
+                                        <input type="text" class="form-control parrafo" id="inputSubtitulo" name="inputSubtitulo" />
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="customInput mb-2">
+                                        <label for="inputDescripcion" class="form-label parrafo">Descripcion</label>
+                                        <textarea class="form-control parrafo" id="inputDescripcion" name="inputDescripcion"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputPrecio" class="form-label parrafo">Precio</label>
+                                        <input type="number" class="form-control parrafo" id="inputPrecio" name="inputPrecio" />
+                                    </div>
+                                </div>
+
+                                <!-- boton del formulario -->
+                                <div class="col-12 d-flex justify-content-center mt-5">
+                                    <div class="mt-auto w-75">
+                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100" name="crearAnuncio">Crear anuncio</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-body-secondary"></div>
+                </div>
+            </div>
+            {% endif %} {% endif %}
+
+            <div class="slidePerfil w-100 my-auto">
+                <div class="card profileCard w-75 mx-auto rounded-4">
                     <div class="card-body">
                         <div class="customBannerContainer mb-4">
-                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile">
-                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfile rounded-4">
+                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfile" />
+                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfile rounded-4" />
                         </div>
                         <form action="{% url 'homeBetter' %}" method="POST">
                             <div class="row mx-4 customRow">
@@ -128,56 +206,66 @@
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputNombre" class="form-label parrafo">Nombre</label>
-                                        <input type="text" class="form-control parrafo" id="inputNombre" value="{{ user.nombre }}" name="inputNombre">
+                                        <input type="text" class="form-control parrafo" id="inputNombre" value="{{ user.nombre }}" name="inputNombre" />
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputApellido" class="form-label parrafo">Apellido</label>
-                                        <input type="text" class="form-control parrafo" id="inputApellido" value="{{ user.apellido }}" name="inputApellido">
+                                        <input type="text" class="form-control parrafo" id="inputApellido" value="{{ user.apellido }}" name="inputApellido" />
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="customInput mb-2">
                                         <label for="inputEmail" class="form-label parrafo">Correo electronico</label>
-                                        <input type="email" class="form-control parrafo" id="inputEmail" value="{{ user.correo }}" name="inputEmail" readonly onfocus="this.removeAttribute('readonly');">
+                                        <input
+                                            type="email"
+                                            class="form-control parrafo"
+                                            id="inputEmail"
+                                            value="{{ user.correo }}"
+                                            name="inputEmail"
+                                            readonly
+                                            onfocus="this.removeAttribute('readonly');" />
                                     </div>
                                 </div>
                                 <div class="col-6 d-flex">
                                     <div class="customInput mb-2 w-75 me-2">
                                         <label for="inputRut" class="form-label parrafo">Rut</label>
-                                        <input type="text" class="form-control parrafo" id="inputRut" value="{{ user.rut }}" name="inputRut">
+                                        <input type="text" class="form-control parrafo" id="inputRut" value="{{ user.rut }}" name="inputRut" />
                                     </div>
                                     <div class="customInput mb-2 w-25">
                                         <label for="inputDv" class="form-label parrafo">Dv</label>
-                                        <input type="text" class="form-control parrafo" id="inputDv" value="{{ user.dv }}" name="inputDv">
+                                        <input type="text" class="form-control parrafo" id="inputDv" value="{{ user.dv }}" name="inputDv" />
                                     </div>
                                 </div>
                                 <div class="col-6 customCol">
                                     <div class="customInput mb-2">
                                         <label for="inputAvatar" class="form-label parrafo">Imagen de perfil</label>
-                                        <input type="file" class="form-control parrafo" id="inputAvatar" name="inputAvatar">
+                                        <input type="file" class="form-control parrafo" id="inputAvatar" name="inputAvatar" />
                                     </div>
                                 </div>
                                 <div class="col-6 customCol">
                                     <div class="customInput mb-2">
                                         <label for="inputTelefono" class="form-label parrafo">Teléfono</label>
-                                        <input type="tel" class="form-control parrafo" id="inputTelefono" value="{{ user.telefono }}" name="inputTelefono">
+                                        <input type="tel" class="form-control parrafo" id="inputTelefono" value="{{ user.telefono }}" name="inputTelefono" />
                                     </div>
                                 </div>
                                 <div class="col-6 mt-5">
                                     <div class="customInput">
-                                        <label for="inputPass" class="form-label parrafo">
-                                            Ingresa tu contraseña para confirmar los cambios
-                                        </label>
-                                        <input type="password" class="form-control parrafo" id="inputPass" placeholder="Ingresa tu contraseña" name="inputPass" readonly onfocus="this.removeAttribute('readonly');">
+                                        <label for="inputPass" class="form-label parrafo">Ingresa tu contraseña para confirmar los cambios</label>
+                                        <input
+                                            type="password"
+                                            class="form-control parrafo"
+                                            id="inputPass"
+                                            placeholder="Ingresa tu contraseña"
+                                            name="inputPass"
+                                            readonly
+                                            onfocus="this.removeAttribute('readonly');" />
                                     </div>
                                 </div>
                                 <div class="col-6 d-flex justify-content-center mt-5">
                                     <div class="mt-auto w-100">
-                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100" name="actualizarPerfil">
-                                            Confirmar cambios
-                                        </button>
+                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100" name="actualizarPerfil">Confirmar cambios</button>
                                     </div>
                                 </div>
                             </div>
@@ -185,38 +273,29 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'error' %}
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header">
-                            <strong class="me-auto heading-6">Ha ocurrido un error</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body textoError">
-                            {{ message }}
-                        </div>
-                    </div>
-                </div>
-            {% elif message.tags == 'success' %}
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header">
-                            <strong class="me-auto heading-6">Operación exitosa</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body parrafo">
-                            {{ message }}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+    {% if messages %} {% for message in messages %} {% if message.tags == 'error' %}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header">
+                <strong class="me-auto heading-6">Ha ocurrido un error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body textoError">{{ message }}</div>
+        </div>
+    </div>
+    {% elif message.tags == 'success' %}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-header">
+                <strong class="me-auto heading-6">Operación exitosa</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body parrafo">{{ message }}</div>
+        </div>
+    </div>
+    {% endif %} {% endfor %} {% endif %}
 </div>
 <script src="{% static '/js/homeBetter.js' %}"></script>
-{% endblock body %}
+{% endblock %}

@@ -51,14 +51,16 @@
 }
 
 .slideInicio,
-.slidePerfil {
+.slidePerfil,
+.slideMiAnuncio {
   transform: scale(0);
   transition: transform 0.4s;
   display: none;
 }
 
 .slideInicio.show,
-.slidePerfil.show {
+.slidePerfil.show,
+.slideMiAnuncio.show {
   transform: scale(1);
 }
 
@@ -85,6 +87,83 @@
 .animating {
   overflow: hidden;
 }
+
+.customBannerContainerAnuncio {
+  display: grid;
+  max-height: 6rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.customBannerProfileAnuncio, .customAvatarProfileAnuncio {
+  grid-row: 1 / 1;
+}
+
+.customAvatarProfileAnuncio {
+  max-height: 6rem;
+  grid-column: 1 / 1;
+  z-index: 1;
+}
+
+.customBannerProfileAnuncio {
+  grid-column: 1 / -1;
+  max-height: 4rem;
+  z-index: 0;
+  width: 95%;
+  justify-self: end;
+  position: relative;
+}
+
+.customCardAnuncio {
+  position: relative;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.customCardAnuncio::after {
+  content: "";
+  position: absolute;
+  width: 101%;
+  height: 105%;
+  background-image: conic-gradient(from var(--angle), var(--azul), var(--amarillo), var(--amarilloNaranja2),  var(--rojo), var(--azul));
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 1rem;
+  animation: spin 3s linear infinite;
+  padding: 1rem;
+}
+
+.customCardAnuncio::before {
+  content: "";
+  position: absolute;
+  width: 101%;
+  height: 105%;
+  background-image: conic-gradient(from var(--angle), var(--azul), var(--amarillo), var(--amarilloNaranja2),  var(--rojo), var(--azul));
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 1rem;
+  animation: spin 3s linear infinite;
+  padding: 1rem;
+  filter: blur(1rem);
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
 
 /* 
 Estilos para las transiciones de los slides

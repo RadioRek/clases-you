@@ -8,14 +8,14 @@ from datetime import datetime
 import locale
 from django.utils import timezone
 from django.contrib import messages
-from .models import TipoUsuario
+from .models import TipoUsuario, Anuncio
 
 User = get_user_model()
 
 @login_required
 def videollamada(request):
     return render(request, "videollamada.html", { 'name': request.user.email })
-    
+
 @login_required
 def home(request):
     #Carga del usuario
@@ -87,7 +87,6 @@ def home(request):
             'year': year, 
             'monthName': month_name, 
         })
-
 
 
 def test(request):
@@ -208,15 +207,19 @@ def loginUsuario(request):
         else:
             messages.error(request, 'Contraseña incorrecta!')
             return False
-            
+
 def homeBetter(request):
-    user = request.user  
+    user = request.user
+    anuncio = Anuncio.objects.filter(usuario=user).first()
     if request.method == "POST":
         if 'actualizarPerfil' in request.POST:
             actualizarUsuario(request)
-            return render(request, "homeBetter.html", { 'user': user })
+            return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
+        if 'crearAnuncio' in request.POST:
+            crearAnuncio(request)
+            return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
     else:    
-        return render(request, "homeBetter.html", { 'user': user })
+        return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
 
 def actualizarUsuario(request):
     user = request.user
@@ -270,9 +273,23 @@ def actualizarUsuario(request):
             user.save()
             messages.success(request, 'Cambios guardados exitosamente!')
             return True
-        
 
+
+def crearAnuncio(request):
+    # metodo para agregar los tags pendiente
+    user = request.user
+    titulo = request.POST.get('inputTitulo')
+    subtitulo = request.POST.get('inputSubtitulo')
+    descripcion = request.POST.get('inputDescripcion')
+    precio = request.POST.get('inputPrecio')
+    
+    if not all([titulo, descripcion, precio]):
+        messages.error(request, 'Todos los campos son obligatorios!')
+        return False
+    else:
+        anuncio = Anuncio(titulo=titulo, subtitulo=subtitulo, descripcion=descripcion, precio=precio, usuario=user)
+        anuncio.save()
+        messages.success(request, 'Anuncio creado exitosamente!')
+        return True
     
     
-    
-        

@@ -5,26 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const inicioSlide = document.querySelector(".slideInicio");
+const miAnuncioSlide = document.querySelector(".slideMiAnuncio");
 const perfilSlide = document.querySelector(".slidePerfil");
 
 function toggleSlide(slideToShow, ...slidesToHide) {
-  if (document.body.classList.contains("animating")) return;
+  
   document.body.classList.add("animating");
   slideToShow.style.display = "block";
   setTimeout(() => {
-    slideToShow.classList.add("show");
     slidesToHide.forEach((slide) => {
       slide.style.display = "none";
       slide.classList.remove("show");
     });
+    slideToShow.classList.add("show");
     setTimeout(() => document.body.classList.remove("animating"), 500);
   }, 0);
 }
 
 document.getElementById("btnSlideInicio").addEventListener("click", () => {
-  toggleSlide(inicioSlide, perfilSlide);
+  toggleSlide(inicioSlide, perfilSlide, miAnuncioSlide);
 });
 
 document.getElementById("btnSlidePerfil").addEventListener("click", () => {
-  toggleSlide(perfilSlide, inicioSlide);
+  toggleSlide(perfilSlide, inicioSlide, miAnuncioSlide);
+});
+
+document.getElementById("btnSlideMiAnuncio").addEventListener("click", () => {
+  toggleSlide(miAnuncioSlide, inicioSlide, perfilSlide);
 });
