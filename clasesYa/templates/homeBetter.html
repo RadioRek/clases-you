@@ -119,7 +119,7 @@
 							<!-- boton para modificar anuncio-->
 							<div class="col-12">
 								<div class="mt-5">
-									<button type="button" class="btn btn-sm botonCustomPerfil heading-6 w-100" id="btnModificarAnuncio">Modificar anuncio</button>
+									<button type="button" class="btn btn-sm botonCustomPerfil heading-6 w-75" id="btnSlideModificarAnuncio">Modificar anuncio</button>
 								</div>
 							</div>					
 						</div>
@@ -192,7 +192,70 @@
                 </div>
             </div>
             {% endif %} {% endif %}
+            <div class="slideModificarAnuncio w-100 my-auto">
+                <div class="card text-center w-75 mx-auto rounded-4 customCardAnuncio">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="customBannerContainerAnuncio mb-4">
+                            <img src="{% static '/img/girlAvatar.png' %}" alt="" class="customAvatarProfileAnuncio" />
+                            <img src="{% static '/img/bannerPink.png' %}" alt="" class="customBannerProfileAnuncio rounded-4" />
+                        </div>
+                        <!-- Formulario creacion de anuncio -->
+                        <!-- 
+									titulo = models.CharField(max_length=255)
+									subtitulo = models.CharField(max_length=255, blank=True, null=True)
+									descripcion = models.TextField()
+									precio = models.DecimalField(max_digits=10, decimal_places=2)
+									usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+									tags = models.ManyToManyField(Tag)
+								-->
+                        <form action="{% url 'homeBetter' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputTitulo" class="form-label parrafo">Titulo</label>
+                                        <h1></h1>
+                                        <input type="text" class="form-control parrafo" id="inputTitulo" name="inputTitulo" value="{{ anuncio.titulo }}" required/>
+                                    </div>
+                                </div>
 
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputSubtitulo" class="form-label parrafo">Subtitulo</label>
+                                        <input type="text" class="form-control parrafo" id="inputSubtitulo" name="inputSubtitulo" value="{{ anuncio.subtitulo }}" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="customInput mb-2">
+                                        <label for="inputDescripcion" class="form-label parrafo">Descripcion</label>
+                                        <textarea class="form-control parrafo" id="inputDescripcion" name="inputDescripcion" required>{{ anuncio.descripcion }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="customInput mb-2">
+                                        <label for="inputPrecio" class="form-label parrafo">Precio</label>
+                                        <input type="number" class="form-control parrafo" id="inputPrecio" name="inputPrecio" placeholder="{{ anuncio.precio }}" required/>
+                                    </div>
+                                </div>
+
+                                <!-- id anuncio a modificar -->
+                                <input type="hidden" name="inputIdAnuncio" value="{{ anuncio.id }}"/>
+
+                                <!-- boton del formulario -->
+                                <div class="col-12 d-flex justify-content-center mt-5">
+                                    <div class="mt-auto w-75">
+                                        <button type="submit" class="btn btn-sm botonCustomPerfil heading-6 w-100" name="modificarAnuncio">Modificar anuncio</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-body-secondary"></div>
+                </div>
+            </div>
             <div class="slidePerfil w-100 my-auto">
                 <div class="card profileCard w-75 mx-auto rounded-4">
                     <div class="card-body">

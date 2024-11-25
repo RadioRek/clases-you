@@ -218,6 +218,10 @@ def homeBetter(request):
         if 'crearAnuncio' in request.POST:
             crearAnuncio(request)
             return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
+        if 'modificarAnuncio' in request.POST:
+            modificarAnuncio(request)
+            anuncio = Anuncio.objects.filter(usuario=user).first()
+            return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
     else:    
         return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
 
@@ -292,4 +296,19 @@ def crearAnuncio(request):
         messages.success(request, 'Anuncio creado exitosamente!')
         return True
     
+def modificarAnuncio(request):
+    anuncioModificar = Anuncio.objects.get(id=request.POST.get('inputIdAnuncio'))
+    titulo = request.POST.get('inputTitulo')
+    subtitulo = request.POST.get('inputSubtitulo')
+    descripcion = request.POST.get('inputDescripcion')
+    precio = request.POST.get('inputPrecio')
+    anuncioModificar.titulo = titulo
+    anuncioModificar.subtitulo = subtitulo
+    anuncioModificar.descripcion = descripcion
+    anuncioModificar.precio = precio
+    anuncioModificar.save()
+    messages.success(request, 'Anuncio modificado exitosamente!')
+    return True
+
+
     

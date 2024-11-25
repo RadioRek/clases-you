@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const inicioSlide = document.querySelector(".slideInicio");
 const miAnuncioSlide = document.querySelector(".slideMiAnuncio");
 const perfilSlide = document.querySelector(".slidePerfil");
+const modificarAnuncioSlide = document.querySelector(".slideModificarAnuncio");
 
 function toggleSlide(slideToShow, ...slidesToHide) {
   
@@ -23,13 +24,17 @@ function toggleSlide(slideToShow, ...slidesToHide) {
 }
 
 document.getElementById("btnSlideInicio").addEventListener("click", () => {
-  toggleSlide(inicioSlide, perfilSlide, miAnuncioSlide);
+  toggleSlide(inicioSlide, perfilSlide, miAnuncioSlide, modificarAnuncioSlide);
 });
 
 document.getElementById("btnSlidePerfil").addEventListener("click", () => {
-  toggleSlide(perfilSlide, inicioSlide, miAnuncioSlide);
+  toggleSlide(perfilSlide, inicioSlide, miAnuncioSlide, modificarAnuncioSlide);
 });
 
 document.getElementById("btnSlideMiAnuncio").addEventListener("click", () => {
-  toggleSlide(miAnuncioSlide, inicioSlide, perfilSlide);
+  toggleSlide(miAnuncioSlide, inicioSlide, perfilSlide, modificarAnuncioSlide);
+});
+
+document.getElementById("btnSlideModificarAnuncio").addEventListener("click", () => {
+  toggleSlide(modificarAnuncioSlide, miAnuncioSlide, inicioSlide, perfilSlide);
 });

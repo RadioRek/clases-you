@@ -50,6 +50,7 @@
   text-shadow: var(--gris) 1px 1px 1px;
 }
 
+.slideModificarAnuncio,
 .slideInicio,
 .slidePerfil,
 .slideMiAnuncio {
@@ -60,7 +61,8 @@
 
 .slideInicio.show,
 .slidePerfil.show,
-.slideMiAnuncio.show {
+.slideMiAnuncio.show,
+.slideModificarAnuncio.show {
   transform: scale(1);
 }
 
