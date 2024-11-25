@@ -222,6 +222,10 @@ def homeBetter(request):
             modificarAnuncio(request)
             anuncio = Anuncio.objects.filter(usuario=user).first()
             return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
+        if 'eliminarAnuncio' in request.POST:
+            eliminarAnuncio(request)
+            anuncio = Anuncio.objects.filter(usuario=user).first()
+            return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
     else:    
         return render(request, "homeBetter.html", { 'user': user, 'anuncio': anuncio })
 
@@ -308,6 +312,12 @@ def modificarAnuncio(request):
     anuncioModificar.precio = precio
     anuncioModificar.save()
     messages.success(request, 'Anuncio modificado exitosamente!')
+    return True
+
+def eliminarAnuncio(request):
+    anuncioEliminar = Anuncio.objects.get(id=request.POST.get('inputIdAnuncio'))
+    anuncioEliminar.delete()
+    messages.success(request, 'Anuncio eliminado exitosamente!')
     return True
 
 
